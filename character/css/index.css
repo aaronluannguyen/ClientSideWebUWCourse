@@ -10,3 +10,9 @@ p {
 .profile-picture {
     max-width: 400px;
 }
+
+.container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin:0 auto;
+}
