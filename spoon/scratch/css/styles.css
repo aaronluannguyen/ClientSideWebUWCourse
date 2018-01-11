@@ -75,7 +75,7 @@ header h1 {
     background-color: #f8f9fa;
 }
 
-#uses .use .card img {
+#uses img {
     width: 100%;
 }
 
@@ -88,6 +88,7 @@ header h1 {
 
 #uses .container .use .card {
     border-radius: 0.25rem;
+    border: rgba(0, 0, 0, 0.125);
 }
 
 @media (min-width: 768px) {
