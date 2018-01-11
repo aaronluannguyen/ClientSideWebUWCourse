@@ -38,4 +38,11 @@ h4 {
     margin-bottom: 0.5rem;
 }
 
+/* Set max width for all container elements
+   Set all containers to be horizontally centered if screen is wider than the elements */
+/* CHECK TO SEE IF SETTING MARGIN AUTO OKAY OR NEED TO SPECIFY ONLY WHEN SCREEN IS LARGER THAN 1140 */
+.container {
+    max-width: 1140px;
+    margin: auto;
+}
 
