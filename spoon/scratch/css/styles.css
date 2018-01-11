@@ -46,8 +46,12 @@ h4 {
     margin: auto;
 }
 
+header {
+    background-color: #e9ecef;
+}
 header h1 {
     font-size: 5rem;
+    color: #28a745;
 }
 
 @media (max-width: 768px) {
@@ -58,7 +62,6 @@ header h1 {
 @media (min-width: 768px) {
     header {
         height: 400px;
-        background-color: #e9ecef;
         background-image: url(../img/header.jpg);
         background-size: cover;
         background-position: center;
@@ -66,7 +69,6 @@ header h1 {
 
     header h1 {
         font-size: 7rem;
-        color: #28a745;
     }
 
     header h1,
