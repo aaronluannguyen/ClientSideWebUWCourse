@@ -3,3 +3,39 @@ You may not change the HTML file.
 Make the page match the provided screenshots
 by adding style rules to this file only.
 */
+
+/* Tells browser to include borders and padding in their box sizing */
+* {
+    box-sizing: border-box;
+}
+
+/* Setting body font family and line height */
+body {
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+                  sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.5;
+}
+
+/* Set no top margins for all paragraphs */
+p {
+    margin-top: 0;
+}
+
+/* Setting new font for h1 - h4
+   Set font weight for all headings
+   Set line height for all headings
+   Set margins on top and bottom for all headings */
+/* ONLY H1 and H2 exist in html */
+h1,
+h2,
+h3,
+h4 {
+    font-family: "Encode Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+           sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: 200;
+    line-height: 1.1;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+
