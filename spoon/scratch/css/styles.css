@@ -86,4 +86,10 @@ header h1 {
     .button:hover {
         background-color: #1e7e34;
     }
+    
+    .button:link,
+    .button:visited {
+        text-decoration: none;
+        color: #FFFFFF;
+    }
 }
