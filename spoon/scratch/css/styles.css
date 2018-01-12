@@ -58,6 +58,8 @@ header .container {
 #features .container {
     display: flex;
     flex-wrap: wrap;
+    padding-top: 50px;
+    padding-bottom: 25px;
 }
 
 #features .feature {
@@ -66,12 +68,14 @@ header .container {
 }
 
 #features h2 {
-    font-weight: bolder;
+    font-weight: bold;
+    font-size: 2rem;
 }
 
 #features .feature-body {
     padding-left: 25px;
     padding-right: 15px;
+    font-weight: 600;
 }
 
 #uses {
@@ -101,7 +105,8 @@ header .container {
 }
 
 #uses h2 {
-    font-weight: bolder;
+    font-weight: bold;
+    font-size: 2rem;
 }
 
 #uses p {
