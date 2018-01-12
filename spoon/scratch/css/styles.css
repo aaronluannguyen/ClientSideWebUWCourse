@@ -65,6 +65,10 @@ header .container {
     padding: 10px 10px;
 }
 
+#features h2 {
+    font-weight: bolder;
+}
+
 #features .feature-body {
     padding-left: 25px;
     padding-right: 15px;
@@ -86,7 +90,8 @@ header .container {
 
 #uses .card {
     border-radius: 0.25rem;
-    border: rgba(0, 0, 0, 0.125);
+    border: rgba(0, 0, 0, 0.9);
+    background-color: #FFFFFF;
 }
 
 #testimonials img {
