@@ -43,8 +43,12 @@ header h1 {
     color: #28a745;
 }
 
+header .container {
+    padding: 25px 40px;
+}
+
 .button {
-    visibility: hidden;
+    display: none;
 }
 
 .feature-icon {
@@ -57,7 +61,13 @@ header h1 {
 }
 
 #features .feature {
-    flex: 1 0 100%
+    display: flex;
+    padding: 10px 10px;
+}
+
+#features .feature-body {
+    padding-left: 25px;
+    padding-right: 15px;
 }
 
 #uses {
@@ -135,12 +145,18 @@ footer a:hover {
         justify-content: flex-end;
     }
 
+    header .lead {
+        padding-left: 50%;
+        text-align: right;
+    }
 
     .button {
+        display: block;
         background-color: #28a745;
         float: right;
         border-radius: 0.25rem;
         visibility: visible;
+        padding: 5px 15px;
     }
 
     .button:focus,
