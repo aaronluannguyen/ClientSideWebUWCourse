@@ -83,7 +83,6 @@ header h1 {
     display: flex;
     flex-wrap: wrap;
     flex: 1 0 100%;
-    justify-content: center;
 }
 
 #uses .card {
@@ -98,11 +97,17 @@ header h1 {
 #testimonials .container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-#testimonials .testimonial {
+.testimonial {
     flex: 1 0 100%;
     justify-content: center;
+}
+
+.occupation {
+    font-size: 80%;
+    color: #808080;
 }
 
 @media (min-width: 768px) {
@@ -142,7 +147,7 @@ header h1 {
         color: #FFFFFF;
     }
 
-    #uses .container .use {
+    #uses .use {
         flex: 1 0 50%;
     }
 }
@@ -152,11 +157,11 @@ header h1 {
         flex: 1 0 33%;
     }
 
-    #uses .container .use {
+    #uses .use {
         flex: 1 0 25%;
     }
 
-    #testimonials .container {
+    #testimonials .testimonial {
         flex: 1 0 50%;
     }
 }
