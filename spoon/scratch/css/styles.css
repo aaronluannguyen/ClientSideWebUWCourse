@@ -110,6 +110,27 @@ header h1 {
     color: #808080;
 }
 
+footer {
+    background-color: #28a745;
+    color: #e9ecef;
+}
+
+footer a {
+    fill: #e9ecef;
+}
+
+footer a:link,
+footer a:visited {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+footer a:focus,
+footer a:hover {
+    color: #bdc6d0;
+    fill: #bdc6d0;
+}
+
 @media (min-width: 768px) {
     header {
         height: 400px;
@@ -149,6 +170,17 @@ header h1 {
 
     #uses .use {
         flex: 1 0 50%;
+    }
+
+    .contact-icons {
+        justify-content: flex-end;
+    }
+
+    footer .container {
+        display: flex;
+        flex-wrap: wrap-reverse;
+        justify-content: space-between;
+        align-items: center;
     }
 }
 
