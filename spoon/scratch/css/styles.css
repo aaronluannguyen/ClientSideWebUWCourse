@@ -95,7 +95,7 @@ header .container {
 
 #uses .card {
     background-color: #FFFFFF;
-    border: rgba(0, 0, 0, 0.4);
+    border: 1.25px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
 }
 
