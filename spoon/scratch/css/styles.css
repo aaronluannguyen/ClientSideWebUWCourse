@@ -94,9 +94,18 @@ header .container {
 }
 
 #uses .card {
-    background-color: #FFFFFF;
-    border: 1.25px solid rgba(0, 0, 0, 0.125);
+    background-color: #f8f9fa;
+    border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+#uses h2 {
+    font-weight: bolder;
+}
+
+#uses p {
+    font-weight: 600;
 }
 
 #uses .card-body {
