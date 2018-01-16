@@ -16,6 +16,10 @@
     text-align: center;
   }
 
+  p {
+    font-weight: $description-font-weight;
+  }
+
   .occupation {
     font-size: 80%;
     color: #808080;
