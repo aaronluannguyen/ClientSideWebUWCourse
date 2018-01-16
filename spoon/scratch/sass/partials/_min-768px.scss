@@ -29,6 +29,12 @@
       padding: 5px 15px;
     }
 
+    .button:link,
+    .button:visited {
+      text-decoration: none;
+      color: $pure-white;
+    }
+
     .button:focus,
     .button:hover {
       background-color: #1e7e34;
