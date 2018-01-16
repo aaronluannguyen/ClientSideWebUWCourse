@@ -1,0 +1,38 @@
+#uses {
+  background-color: #f8f9fa;
+
+  img {
+    width: 100%;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 100%
+  }
+
+  .use {
+    display: flex;
+    padding: 35px 10px 40px;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  p {
+    font-weight: 600;
+  }
+
+  .card-body {
+    padding: 20px 20px;
+  }
+}

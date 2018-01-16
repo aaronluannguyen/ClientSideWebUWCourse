@@ -1,0 +1,33 @@
+footer {
+  background-color: $green-color;
+  color: $default-white;
+
+  .container {
+    padding: 50px 25px;
+  }
+
+  .contact-icons {
+    a {
+      fill: $default-white;
+      padding-bottom: 30px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  a:link,
+  a:visited {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+
+  a:focus,
+  a:hover {
+    color: $footer-icon-focus;
+    fill: $footer-icon-focus;
+  }
+
+  .footer-content {
+    text-align: left;
+  }
+}

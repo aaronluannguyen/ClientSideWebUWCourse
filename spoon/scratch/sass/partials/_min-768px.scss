@@ -1,0 +1,56 @@
+@media (min-width: 768px) {
+  header {
+    height: 400px;
+    background-image: url(../img/header.jpg);
+    background-size: cover;
+    background-position: center;
+
+    h1 {
+      font-size: 7rem;
+    }
+
+    h1,
+    .lead {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .lead {
+      padding-left: 50%;
+      text-align: right;
+    }
+
+    .button {
+      display: block;
+      background-color: #28a745;
+      float: right;
+      border-radius: 0.25rem;
+      visibility: visible;
+      padding: 5px 15px;
+    }
+
+    .button:focus,
+    .button:hover {
+      background-color: #1e7e34;
+    }
+  }
+
+  #uses {
+    .use {
+      flex: 1 0 50%;
+    }
+  }
+
+  footer {
+    .contact-icons {
+      justify-content: flex-end;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}

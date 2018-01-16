@@ -1,0 +1,28 @@
+#features {
+  .feature-icon {
+    fill: $green-color;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    padding-bottom: 25px;
+  }
+
+  .feature {
+    display: flex;
+    padding: 10px 10px;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .feature-body {
+    padding-left: 25px;
+    padding-right: 15px;
+    font-weight: 600;
+  }
+}

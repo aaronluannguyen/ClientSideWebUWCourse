@@ -1,4 +1,6 @@
 $green-color: #28a745;
+$footer-icon-focus: #bdc6d0;
+$default-white: e9ecef;
 
 * {
   box-sizing: border-box;
@@ -32,7 +34,7 @@ h4 {
 }
 
 header {
-  background-color: #e9ecef;
+  background-color: $default-white;
 
   h1 {
     font-size: 5rem;
@@ -142,7 +144,7 @@ header {
 
 footer {
   background-color: $green-color;
-  color: #e9ecef;
+  color: $default-white;
 
   .container {
     padding: 50px 25px;
@@ -150,7 +152,7 @@ footer {
 
   .contact-icons {
     a {
-      fill: #e9ecef;
+      fill: $default-white;
       padding-bottom: 30px;
       padding-left: 10px;
       padding-right: 10px;
@@ -165,8 +167,8 @@ footer {
 
   a:focus,
   a:hover {
-    color: #bdc6d0;
-    fill: #bdc6d0;
+    color: $footer-icon-focus;
+    fill: $footer-icon-focus;
   }
 
   .footer-content {
