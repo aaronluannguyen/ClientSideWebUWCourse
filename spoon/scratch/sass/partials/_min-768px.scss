@@ -16,13 +16,14 @@
     }
 
     .lead {
+      font-size: 1.25rem;
       padding-left: 50%;
       text-align: right;
     }
 
     .button {
       display: block;
-      background-color: #28a745;
+      background-color: $green-color;
       float: right;
       border-radius: 0.25rem;
       visibility: visible;
