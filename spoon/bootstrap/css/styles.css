@@ -3,6 +3,8 @@ you shouldn't need any more rules than these */
 
 body {
     font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* Added this cs rule to account for spacing for a fixed bootstrap navbar */
+    padding-top: 50px;
 }
 
 h1, h2, h3, h4 {
