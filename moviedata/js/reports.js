@@ -144,6 +144,7 @@ function allCitations(moviesArray) {
     //try using the .map() method on the moviesArray
     //to accomplish this in one short line of code!
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+    return moviesArray.map(getCitation);
 }
 
 /**
