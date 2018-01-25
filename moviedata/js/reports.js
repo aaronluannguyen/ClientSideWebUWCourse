@@ -171,6 +171,10 @@ function topGrossingMovie(moviesArray) {
     return topMovie;
 }
 
+function isDisney(movie) {
+    return movie.distributor.toLowerCase() === "walt disney";
+}
+
 /**
  * Returns a new array containing only the movies where the
  * `distributor` property equals "Walt Disney" in any casing.
@@ -186,7 +190,7 @@ function onlyDisneyMovies(moviesArray) {
     //"Walt Disney" or "walt disney" or "WALT DISNEY", etc.
     //try using .filter() to accomplish this
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-
+    return moviesArray.filter(isDisney);
 }
 
 /**
