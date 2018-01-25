@@ -75,7 +75,11 @@ function getYearReleased(movie) {
  */
 function getCitation(movie) {
     //TODO: implement this according to the comments above
-
+    let result = getTitle(movie);
+    if (getYearReleased(movie) === undefined) {
+        return result;
+    }
+    return result + " (" + getYearReleased(movie) + ")";
 }
 
 /**
