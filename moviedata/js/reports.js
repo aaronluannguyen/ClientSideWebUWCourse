@@ -101,6 +101,14 @@ function getAvgTicketPrice(movie) {
     }
 }
 
+
+function reduceTicketsSold(acc, movie) {
+    if (!movie.gross) {
+        return 0;
+    }
+    return acc + movie.tickets;
+}
+
 /**
  * Returns the sum of all tickets sold for all movies in the
  * `moviesArray` parameter, which is an array of Movie objects.
@@ -119,7 +127,7 @@ function totalTicketsSold(moviesArray) {
     //try using the .reduce() methods on the moviesArray
     //to calculate this value using functional programming techniques
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-
+    return moviesArray.reduce(reduceTicketsSold, 0);
 }
 
 /**
