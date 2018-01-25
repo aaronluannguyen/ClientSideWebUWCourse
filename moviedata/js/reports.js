@@ -2,6 +2,7 @@
 
 //TODO: set the JavaScript interpreter into script mode
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+"use strict";
 
 //The following is only used by Visual Studio Code and other JSDoc-aware
 //editors. It doesn't affect the way your code is executed at runtime,
