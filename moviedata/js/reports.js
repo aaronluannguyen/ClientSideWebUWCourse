@@ -160,7 +160,15 @@ function topGrossingMovie(moviesArray) {
     //you can use a standard for loop to accomplish this, but
     //try using .reduce() instead for a more elegant solution
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-
+    let topMovie = moviesArray[0];
+    let topGross = 0;
+    for (let i = 0; i < moviesArray.length; i++) {
+        if (moviesArray[i].gross > topGross) {
+            topMovie = moviesArray[i];
+            topGross = moviesArray[i].gross;
+        }
+    }
+    return topMovie;
 }
 
 /**
