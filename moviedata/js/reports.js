@@ -35,7 +35,10 @@ function getTitle(movie) {
     //(which is an object), or the literal string "(no title)" 
     //if the `movie` parameter is null/undefined or has no `title`
     //property
-    
+    if (movie == null || movie.title == undefined) {
+        return '(no title)';
+    }
+    return movie.title;
 }
 
 /**
