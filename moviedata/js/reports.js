@@ -212,6 +212,10 @@ function top10DisneyMovies(moviesArray) {
     return onlyDisneyMovies(moviesArray).sort(byGross).slice(0,10);
 }
 
+function onlyComedy(movie) {
+    return movie.genre.toLowerCase() === "comedy";
+}
+
 /**
  * Returns the top 10 grossing movies that have the value "Comedy"
  * in their `genre` property, regardless of casing.
@@ -224,7 +228,7 @@ function top10Comedies(moviesArray) {
     //your code should do a case-insensitive comparison 
     //of the `genre` property so that you include
     //"Comedy", "comedy", "COMEDY", etc.
-
+    return moviesArray.filter(onlyComedy).sort(byGross).splice(0,10);
 }
 
 /**
