@@ -56,7 +56,6 @@ function getYearReleased(movie) {
     if (movie && movie.released) {
         return Number(movie.released.substring(0,4));
     }
-    return undefined;
 }
 
 /**
@@ -94,7 +93,12 @@ function getCitation(movie) {
  */
 function getAvgTicketPrice(movie) {
     //TODO: implement this according to the comments above
-
+    if (movie) {
+        if (movie.gross && movie.tickets) {
+            return movie.gross / movie.tickets;
+        }
+        return NaN;
+    }
 }
 
 /**
