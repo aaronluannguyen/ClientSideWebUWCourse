@@ -193,6 +193,11 @@ function onlyDisneyMovies(moviesArray) {
     return moviesArray.filter(isDisney);
 }
 
+
+function byGross(movie1, movie2) {
+    return movie2.gross - movie1.gross;
+}
+
 /**
  * Returns an array containing only the top 10 grossing movies 
  * distributed by Walt Disney.
@@ -204,7 +209,7 @@ function top10DisneyMovies(moviesArray) {
     //TODO: implement this according to the comments above
     //HINT: you can use the .sort() method to sort an array
     //and the .slice() method to slice off the first 10 elements
-    
+    return onlyDisneyMovies(moviesArray).sort(byGross).slice(0,10);
 }
 
 /**
