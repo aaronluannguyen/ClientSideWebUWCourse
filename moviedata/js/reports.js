@@ -35,10 +35,10 @@ function getTitle(movie) {
     //(which is an object), or the literal string "(no title)" 
     //if the `movie` parameter is null/undefined or has no `title`
     //property
-    if (movie == null || movie.title == undefined) {
-        return '(no title)';
+    if (movie && movie.title) {
+        return movie.title;
     }
-    return movie.title;
+    return '(no title)';
 }
 
 /**
@@ -53,6 +53,10 @@ function getYearReleased(movie) {
     //TODO: implement this according to the comments above
     //note that the `released` property is a string in the
     //format YYYY-MM-DD (e.g., 2017-12-31)
+    if (movie && movie.released) {
+        return Number(movie.released.substring(0,4));
+    }
+    return undefined;
 }
 
 /**
