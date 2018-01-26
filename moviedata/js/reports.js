@@ -250,7 +250,16 @@ function distinctDistributors(moviesArray) {
     // so you need to select only the distinct distributor
     // values and return those as an array. Remember that the
     // properties of a JavaScript object are a unique set.
-
+    let resultArray = [];
+    for (let i = 0; i < moviesArray.length; i++) {
+        if (moviesArray[i].distributor == undefined) {
+            moviesArray[i].distributor = '(none)';
+        }
+        if (!resultArray.includes(moviesArray[i].distributor)) {
+            resultArray.push(moviesArray[i].distributor);
+        }
+    }
+    return resultArray;
 }
 
 /**
@@ -270,7 +279,16 @@ function distinctDistributors(moviesArray) {
  */
 function countByRating(moviesArray) {
     //TODO: implement this according to the comments above
-
+    let ratingCount = {};
+    for (let i = 0; i < moviesArray.length; i++) {
+        let ratingName = String(moviesArray[i].rating);
+        if (!ratingCount.hasOwnProperty(ratingName)) {
+            ratingCount[ratingName] = 1;
+        } else {
+            ratingCount[ratingName]++;
+        }
+    }
+    return ratingCount;
 }
 
 /**
