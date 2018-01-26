@@ -291,6 +291,10 @@ function countByRating(moviesArray) {
     return ratingCount;
 }
 
+function genreDesc(genre1, genre2) {
+    return genre2.gross - genre1.gross;
+}
+
 /**
  * Returns the sum of gross sales for each distinct genre. The 
  * returned array contains one object per each distinct genre.
@@ -326,7 +330,20 @@ function countByRating(moviesArray) {
  */
 function grossByGenre(moviesArray) {
     //TODO: implement this according to the comments above
-
+    let genreGrossing = [];
+    for (let i = 0; i < moviesArray.length; i++) {
+        if (!moviesArray[i].genre) {
+            moviesArray[i].genre = "(none)";
+        }
+        if (genreGrossing.findIndex(genreObj => genreObj.genre === moviesArray[i].genre) === -1) {
+            genreGrossing.push({genre: moviesArray[i].genre, gross: moviesArray[i].gross});
+        } else {
+            let genreLocation = genreGrossing.findIndex(genreObj => genreObj.genre === moviesArray[i].genre);
+            genreGrossing[genreLocation].gross += moviesArray[i].gross;
+        }
+    }
+    console.log(genreGrossing);
+    return genreGrossing.sort(genreDesc);
 }
 
 
