@@ -342,7 +342,6 @@ function grossByGenre(moviesArray) {
             genreGrossing[genreLocation].gross += moviesArray[i].gross;
         }
     }
-    console.log(genreGrossing);
     return genreGrossing.sort(genreDesc);
 }
 
