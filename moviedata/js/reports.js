@@ -338,8 +338,8 @@ function grossByGenre(moviesArray) {
         if (genreGrossing.findIndex(genreObj => genreObj.genre === moviesArray[i].genre) === -1) {
             genreGrossing.push({genre: moviesArray[i].genre, gross: moviesArray[i].gross});
         } else {
-            let genreLocation = genreGrossing.findIndex(genreObj => genreObj.genre === moviesArray[i].genre);
-            genreGrossing[genreLocation].gross += moviesArray[i].gross;
+            let genreIndex = genreGrossing.findIndex(genreObj => genreObj.genre === moviesArray[i].genre);
+            genreGrossing[genreIndex].gross += moviesArray[i].gross;
         }
     }
     return genreGrossing.sort(genreDesc);
@@ -351,6 +351,13 @@ function grossByGenre(moviesArray) {
 // The following reports are not required, but you can implement for extra credit.
 // See the Opportunities for Extra Credit section of the challenge description
 // for more details.
+
+function ratingLogicSort(rating1, rating2) {
+    let sortGoal = ["G", "PG", "PG-13", "R", "NC-17", "Not Rated"];
+    let rating1Index = sortGoal.findIndex(rating => rating === rating1.rating);
+    let rating2Index = sortGoal.findIndex(rating => rating === rating2.rating);
+    return rating1Index - rating2Index;
+}
 
 /**
  * Returns the sum of all tickets sold for each distinct rating.
@@ -366,6 +373,18 @@ function grossByGenre(moviesArray) {
  */
 function ticketsByRating(moviesArray) {
     //TODO: implement according to the comments
+    let ratingResult = [];
+    for (let i = 0; i < moviesArray.length; i++) {
+        if (ratingResult.findIndex(movie => movie.rating === moviesArray[i].rating) === -1) {
+            ratingResult.push({rating: moviesArray[i].rating, tickets: moviesArray[i].tickets});
+        } else {
+            let ratingIndex = ratingResult.findIndex(movie => movie.rating === moviesArray[i].rating);
+            ratingResult[ratingIndex].tickets += moviesArray[i].tickets;
+        }
+    }
+    console.log(ratingResult);
+    console.log(ratingResult.sort(ratingLogicSort));
+    return ratingResult.sort(ratingLogicSort);
 }
 
 /**
