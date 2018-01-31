@@ -10,7 +10,7 @@
 //your code. For more details on JSDoc, see http://usejsdoc.org/.
 //For more details on how VSCode pays attention to JSDoc annotations, see
 //https://github.com/Microsoft/TypeScript/wiki/JsDoc-support-in-JavaScript
-//and https://code.visualstudio.com/docs/languages/javascript Aaron
+//and https://code.visualstudio.com/docs/languages/javascript
 /**
  * @typedef Movie
  * @type {Object}
