@@ -1,5 +1,7 @@
 "use strict";
 
+const BLANK_TILE_SRC = "img/page-icon.png";
+
 /**
  * Shuffles an array in-place.
  * Source: https://bost.ocks.org/mike/shuffle/
@@ -27,8 +29,14 @@ function cloneObject(obj) {
     return Object.assign({}, obj);
 }
 
+// Select 8 random photos from 32 photo collection
+function select8() {
+
+}
+
 function newGame() {
     //TODO: add code to implement the game
+
 }
 
 //start a new game when the page loads
