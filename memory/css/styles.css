@@ -1,4 +1,8 @@
 /* define any style rules you need here */
+* {
+    box-sizing: border-box;
+}
+
 .container {
     max-width: 1000px;
     margin-left: auto;
@@ -15,13 +19,16 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1 0 25%;
+    justify-content: space-around;
+    padding: 0 0;
 }
 
 #tiles button {
     background-color: black;
+    margin-bottom: 10px;
 }
 
 #tiles button img {
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 225px;
+    max-height: 225px;
 }
