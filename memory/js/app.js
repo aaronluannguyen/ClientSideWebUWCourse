@@ -39,6 +39,16 @@ function generatePicArray() {
     return gameArray;
 }
 
+// Renders initial game state of 16 cards with Blank tile img and alt text
+function renderBlankCards() {
+    let button = document.createElement("button");
+    let img = document.createElement("img");
+    img.src = TILEBACK;
+    img.alt = TILEBACKALT;
+    button.appendChild(img);
+    return button;
+}
+
 function newGame() {
     //TODO: add code to implement the game
     let gameArray = generatePicArray();
@@ -46,12 +56,7 @@ function newGame() {
     let gameTiles = document.querySelector("#tiles");
     gameTiles.textContent =  "";
     for (let i = 0; i < gameArray.length; i++) {
-        let button = document.createElement("button");
-        let img = document.createElement("img");
-        img.src = TILEBACK;
-        img.alt = TILEBACKALT;
-        button.appendChild(img);
-        gameTiles.appendChild(button);
+        gameTiles.appendChild(renderBlankCards());
     }
     console.log(gameTiles);
 }
