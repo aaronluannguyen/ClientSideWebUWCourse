@@ -1,6 +1,6 @@
 "use strict";
 
-const BLANK_TILE_SRC = "img/page-icon.png";
+const BLANK_TILE_SRC = "img/tileback.jpg";
 
 /**
  * Shuffles an array in-place.
@@ -29,14 +29,29 @@ function cloneObject(obj) {
     return Object.assign({}, obj);
 }
 
-// Select 8 random photos from 32 photo collection
-function select8() {
+// Renders a single img div
+function renderPic(picNum) {
+    let img = document.createElement("img");
+    img.src = ("img/tile" + picNum + ".jpg");
+    return img;
+}
 
+// Select 8 random photos from 32 photo collection for game
+function select8() {
+    let imgTiles = document.querySelector("#tiles");
+    for (let i = 0; i < 8; i++) {
+        let picNum = Math.floor(Math.random() * 32);
+        if (picNum < 10) {
+            picNum = "0" + picNum;
+        }
+        imgTiles.appendChild(renderPic(picNum));
+        imgTiles.appendChild(renderPic(picNum));
+    }
 }
 
 function newGame() {
     //TODO: add code to implement the game
-
+    select8();
 }
 
 //start a new game when the page loads
