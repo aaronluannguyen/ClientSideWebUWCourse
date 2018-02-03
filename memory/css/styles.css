@@ -1,1 +1,27 @@
 /* define any style rules you need here */
+.container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#stats {
+    display: flex;
+    flex: 1 0 25%;
+    justify-content: space-between;
+}
+
+#tiles {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 25%;
+}
+
+#tiles button {
+    background-color: black;
+}
+
+#tiles button img {
+    max-width: 200px;
+    max-height: 200px;
+}
