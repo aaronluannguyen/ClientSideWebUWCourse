@@ -1,7 +1,5 @@
 "use strict";
 
-const BLANK_TILE_SRC = "img/tileback.jpg";
-
 /**
  * Shuffles an array in-place.
  * Source: https://bost.ocks.org/mike/shuffle/
@@ -29,29 +27,33 @@ function cloneObject(obj) {
     return Object.assign({}, obj);
 }
 
-// Renders a single img div
-function renderPic(picNum) {
-    let img = document.createElement("img");
-    img.src = ("img/tile" + picNum + ".jpg");
-    return img;
-}
-
-// Select 8 random photos from 32 photo collection for game
-function select8() {
-    let imgTiles = document.querySelector("#tiles");
-    for (let i = 0; i < 8; i++) {
-        let picNum = Math.floor(Math.random() * 32);
-        if (picNum < 10) {
-            picNum = "0" + picNum;
-        }
-        imgTiles.appendChild(renderPic(picNum));
-        imgTiles.appendChild(renderPic(picNum));
+// Generates 8 pic pairs for the game
+function generatePicArray() {
+    let select8 = shuffle(TILES).slice(0, 8);
+    let gameArray = [];
+    for (let i = 0; i < select8.length; i++) {
+        gameArray.push(cloneObject(select8[i]));
+        gameArray.push(cloneObject(select8[i]));
     }
+    gameArray = shuffle(gameArray);
+    return gameArray;
 }
 
 function newGame() {
     //TODO: add code to implement the game
-    select8();
+    let gameArray = generatePicArray();
+    console.log(gameArray);
+    let gameTiles = document.querySelector("#tiles");
+    gameTiles.textContent =  "";
+    for (let i = 0; i < gameArray.length; i++) {
+        let button = document.createElement("button");
+        let img = document.createElement("img");
+        img.src = TILEBACK;
+        img.alt = TILEBACKALT;
+        button.appendChild(img);
+        gameTiles.appendChild(button);
+    }
+    console.log(gameTiles);
 }
 
 //start a new game when the page loads
