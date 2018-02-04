@@ -49,20 +49,27 @@ let state = {
 let checkArray = [];
 
 function handleCompare(img) {
-    if (checkArray.length < 2) {
-        checkArray.push(img);
-    } else if (checkArray.length === 2) {
-        checkArray.push(img);
-        if (checkArray[0].src != checkArray[1].src) {
-            state.missed++;
-            for (let i = 0; i < checkArray.length; i++) {
-                checkArray[i].src = TILEBACK;
-                checkArray[i].alt = TILEBACKALT;
+    if (!img.classList.contains("Matched")) {
+        if (checkArray.length < 1) {
+            checkArray.push(img);
+        } else if (checkArray.length === 1) {
+            checkArray.push(img);
+            if (checkArray[0].src === checkArray[1].src) {
+                state.matches++;
+                for (let i = 0; i < checkArray.length; i++) {
+                    checkArray[i].classList.add("Matched");
+                }
+
+            } else {
+                state.missed++;
+                for (let i = 0; i < checkArray.length; i++) {
+                    checkArray[i].src = TILEBACK;
+                    checkArray[i].alt = TILEBACKALT;
+                }
             }
-        } else {
-            state.matches++;
+            console.log(checkArray);
+            checkArray = [];
         }
-        checkArray = [];
     }
 }
 
@@ -73,10 +80,9 @@ function renderButton(url, alt) {
     img.src = TILEBACK;
     img.alt = TILEBACKALT;
     button.appendChild(img);
-    button.classList.add("hidden");
     button.addEventListener("click", function() {
-        if (button.classList.contains("hidden")) {
-            button.classList.remove("hidden");
+        if (img.src != TILEBACK) {
+            img.classList.add("Flipped");
             img.src = url;
             img.alt = alt;
         }
@@ -87,24 +93,7 @@ function renderButton(url, alt) {
         // }
     });
     button.onclick = function() {
-        if (!button.hidden) {
-            if (checkArray.length < 2) {
-                checkArray.push(img);
-            } else if (checkArray.length === 2) {
-                checkArray.push(img);
-                if (checkArray[0].src != checkArray[1].src) {
-                    state.missed++;
-                    for (let i = 0; i < checkArray.length; i++) {
-                        checkArray[i].src = TILEBACK;
-                        checkArray[i].alt = TILEBACKALT;
-                    }
-                } else {
-                    state.matches++;
-                }
-                console.log(checkArray);
-                checkArray = [];
-            }
-        }
+        handleCompare(img);
     };
 
     return button;
