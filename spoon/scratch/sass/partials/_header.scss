@@ -1,0 +1,16 @@
+header {
+  background-color: $default-white;
+
+  h1 {
+    font-size: 5rem;
+    color: $green-color;
+  }
+
+  .container {
+    padding: 25px 20px;
+  }
+
+  .button {
+    display: none;
+  }
+}
