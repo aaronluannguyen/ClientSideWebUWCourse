@@ -39,27 +39,74 @@ function generatePicArray() {
     return gameArray;
 }
 
+let state = {
+    matches: 0,
+    missed: 0,
+    remaining: 0,
+    time: 0
+};
+
+let checkArray = [];
+
+function handleCompare(img) {
+    if (checkArray.length < 2) {
+        checkArray.push(img);
+    } else if (checkArray.length === 2) {
+        checkArray.push(img);
+        if (checkArray[0].src != checkArray[1].src) {
+            state.missed++;
+            for (let i = 0; i < checkArray.length; i++) {
+                checkArray[i].src = TILEBACK;
+                checkArray[i].alt = TILEBACKALT;
+            }
+        } else {
+            state.matches++;
+        }
+        checkArray = [];
+    }
+}
+
 // Renders initial game state of 16 cards with Blank tile img and alt text
-function renderButtons(url, alt) {
+function renderButton(url, alt) {
     let button = document.createElement("button");
     let img = document.createElement("img");
     img.src = TILEBACK;
     img.alt = TILEBACKALT;
-    console.log(TILEBACK);
     button.appendChild(img);
     button.classList.add("hidden");
-    let hidden = true;
     button.addEventListener("click", function() {
-        if (hidden) {
-            hidden = !hidden;
+        if (button.classList.contains("hidden")) {
+            button.classList.remove("hidden");
             img.src = url;
             img.alt = alt;
-        } else {
-            hidden =!hidden;
-            img.src = TILEBACK;
-            img.alt = TILEBACKALT;
         }
+        // } else {
+        //     button.classList.add("hidden");
+        //     img.src = TILEBACK;
+        //     img.alt = TILEBACKALT;
+        // }
     });
+    button.onclick = function() {
+        if (!button.hidden) {
+            if (checkArray.length < 2) {
+                checkArray.push(img);
+            } else if (checkArray.length === 2) {
+                checkArray.push(img);
+                if (checkArray[0].src != checkArray[1].src) {
+                    state.missed++;
+                    for (let i = 0; i < checkArray.length; i++) {
+                        checkArray[i].src = TILEBACK;
+                        checkArray[i].alt = TILEBACKALT;
+                    }
+                } else {
+                    state.matches++;
+                }
+                console.log(checkArray);
+                checkArray = [];
+            }
+        }
+    };
+
     return button;
 }
 
@@ -69,7 +116,7 @@ function newGame() {
     let gameTiles = document.querySelector("#tiles");
     gameTiles.textContent =  "";
     for (let i = 0; i < gameArray.length; i++) {
-        gameTiles.appendChild(renderButtons(gameArray[i].url, gameArray[i].alt));
+        gameTiles.appendChild(renderButton(gameArray[i].url, gameArray[i].alt));
     }
 }
 
