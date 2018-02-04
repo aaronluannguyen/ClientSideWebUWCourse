@@ -45,11 +45,19 @@ function renderButtons(url, alt) {
     let img = document.createElement("img");
     img.src = TILEBACK;
     img.alt = TILEBACKALT;
+    console.log(TILEBACK);
     button.appendChild(img);
+    button.classList.add("hidden");
+    let hidden = true;
     button.addEventListener("click", function() {
-        if (img.src = TILEBACK) {
+        if (hidden) {
+            hidden = !hidden;
             img.src = url;
             img.alt = alt;
+        } else {
+            hidden =!hidden;
+            img.src = TILEBACK;
+            img.alt = TILEBACKALT;
         }
     });
     return button;
@@ -58,7 +66,6 @@ function renderButtons(url, alt) {
 function newGame() {
     //TODO: add code to implement the game
     let gameArray = generatePicArray();
-    console.log(gameArray);
     let gameTiles = document.querySelector("#tiles");
     gameTiles.textContent =  "";
     for (let i = 0; i < gameArray.length; i++) {
