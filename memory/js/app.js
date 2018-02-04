@@ -42,20 +42,22 @@ function generatePicArray() {
 let state = {
     matches: 0,
     missed: 0,
-    remaining: 0,
+    remaining: 8,
     time: 0
 };
 
 let checkArray = [];
 
 function handleCompare(img) {
-    if (!img.classList.contains("Matched")) {
+    if (!img.classList.contains("Matched") && !img.classList.contains("Flipped")) {
+        img.classList.add("Flipped");
         if (checkArray.length < 1) {
             checkArray.push(img);
         } else if (checkArray.length === 1) {
             checkArray.push(img);
             if (checkArray[0].src === checkArray[1].src) {
                 state.matches++;
+                state.remaining--;
                 for (let i = 0; i < checkArray.length; i++) {
                     checkArray[i].classList.add("Matched");
                 }
@@ -65,6 +67,7 @@ function handleCompare(img) {
                 for (let i = 0; i < checkArray.length; i++) {
                     checkArray[i].src = TILEBACK;
                     checkArray[i].alt = TILEBACKALT;
+                    checkArray[i].classList.remove("Flipped");
                 }
             }
             console.log(checkArray);
@@ -81,21 +84,13 @@ function renderButton(url, alt) {
     img.alt = TILEBACKALT;
     button.appendChild(img);
     button.addEventListener("click", function() {
-        if (img.src != TILEBACK) {
-            img.classList.add("Flipped");
+        button.onclick = function() {
             img.src = url;
             img.alt = alt;
-        }
-        // } else {
-        //     button.classList.add("hidden");
-        //     img.src = TILEBACK;
-        //     img.alt = TILEBACKALT;
-        // }
+            console.log(img);
+            handleCompare(img);
+        };
     });
-    button.onclick = function() {
-        handleCompare(img);
-    };
-
     return button;
 }
 
