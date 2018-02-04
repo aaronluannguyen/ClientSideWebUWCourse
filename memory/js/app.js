@@ -40,12 +40,18 @@ function generatePicArray() {
 }
 
 // Renders initial game state of 16 cards with Blank tile img and alt text
-function renderBlankCards() {
+function renderButtons(url, alt) {
     let button = document.createElement("button");
     let img = document.createElement("img");
     img.src = TILEBACK;
     img.alt = TILEBACKALT;
     button.appendChild(img);
+    button.addEventListener("click", function() {
+        if (img.src = TILEBACK) {
+            img.src = url;
+            img.alt = alt;
+        }
+    });
     return button;
 }
 
@@ -56,9 +62,8 @@ function newGame() {
     let gameTiles = document.querySelector("#tiles");
     gameTiles.textContent =  "";
     for (let i = 0; i < gameArray.length; i++) {
-        gameTiles.appendChild(renderBlankCards());
+        gameTiles.appendChild(renderButtons(gameArray[i].url, gameArray[i].alt));
     }
-    console.log(gameTiles);
 }
 
 //start a new game when the page loads
