@@ -70,7 +70,6 @@ function handleCompare(img) {
                     checkArray[i].classList.remove("Flipped");
                 }
             }
-            console.log(checkArray);
             checkArray = [];
         }
     }
@@ -86,8 +85,6 @@ function renderButton(url, alt) {
     button.addEventListener("click", function() {
         button.onclick = function() {
             img.src = url;
-            img.alt = alt;
-            console.log(img);
             handleCompare(img);
         };
     });
