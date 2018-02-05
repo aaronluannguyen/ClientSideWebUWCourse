@@ -100,6 +100,7 @@ function renderButton(url, alt) {
     button.addEventListener("click", function() {
         button.onclick = function() {
             img.src = url;
+            img.alt = alt;
             handleCompare(img);
         };
     });
