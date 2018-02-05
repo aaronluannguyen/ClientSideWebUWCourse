@@ -66,13 +66,12 @@ function handleCompare(img) {
                 state.remaining--;
                 matchesTotal.textContent = state.matches;
                 remainingTotal.textContent = state.remaining;
-                if (state.matches === 8) {
-                    clearInterval(state.timer);
-                }
                 for (let i = 0; i < checkArray.length; i++) {
                     checkArray[i].classList.add("Matched");
                 }
-
+                if (state.matches === 8) {
+                    clearInterval(state.timer);
+                }
             } else {
                 state.missed++;
                 missedTotal.textContent = state.missed;
