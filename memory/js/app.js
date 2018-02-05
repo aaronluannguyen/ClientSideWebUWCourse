@@ -43,7 +43,8 @@ let state = {
     matches: 0,
     missed: 0,
     remaining: 8,
-    time: 0
+    startTime: undefined,
+    timer: undefined,
 };
 
 let matchesTotal = document.querySelector("#matches");
@@ -65,6 +66,9 @@ function handleCompare(img) {
                 state.remaining--;
                 matchesTotal.textContent = state.matches;
                 remainingTotal.textContent = state.remaining;
+                if (state.matches === 8) {
+                    clearInterval(state.timer);
+                }
                 for (let i = 0; i < checkArray.length; i++) {
                     checkArray[i].classList.add("Matched");
                 }
@@ -73,6 +77,9 @@ function handleCompare(img) {
                 state.missed++;
                 missedTotal.textContent = state.missed;
                 for (let i = 0; i < checkArray.length; i++) {
+                    setTimeout(function() {
+
+                    }, 500);
                     checkArray[i].src = TILEBACK;
                     checkArray[i].alt = TILEBACKALT;
                     checkArray[i].classList.remove("Flipped");
@@ -99,12 +106,21 @@ function renderButton(url, alt) {
     return button;
 }
 
+function renderTime() {
+    let time = Date.now() - state.startTime;
+    timeTotal.textContent = Math.floor(time / 60000) + " min " + Math.floor(time / 1000 % 60) + " sec";
+}
+
 function newGame() {
     //TODO: add code to implement the game
+    state.startTime = Date.now();
+    state.timer = setInterval(function() {
+        renderTime();
+    }, 1000);
     matchesTotal.textContent = "0";
     missedTotal.textContent = "0";
     remainingTotal.textContent = "0";
-    timeTotal.textContent = "0:00";
+    timeTotal.textContent = "0 min 0 sec";
     let gameArray = generatePicArray();
     let gameTiles = document.querySelector("#tiles");
     gameTiles.textContent =  "";
