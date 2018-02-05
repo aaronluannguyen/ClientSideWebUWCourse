@@ -46,6 +46,11 @@ let state = {
     time: 0
 };
 
+let matchesTotal = document.querySelector("#matches");
+let missedTotal = document.querySelector("#missedMatches");
+let remainingTotal = document.querySelector("#remaining");
+let timeTotal = document.querySelector("#time");
+
 let checkArray = [];
 
 function handleCompare(img) {
@@ -58,12 +63,15 @@ function handleCompare(img) {
             if (checkArray[0].src === checkArray[1].src) {
                 state.matches++;
                 state.remaining--;
+                matchesTotal.textContent = state.matches;
+                remainingTotal.textContent = state.remaining;
                 for (let i = 0; i < checkArray.length; i++) {
                     checkArray[i].classList.add("Matched");
                 }
 
             } else {
                 state.missed++;
+                missedTotal.textContent = state.missed;
                 for (let i = 0; i < checkArray.length; i++) {
                     checkArray[i].src = TILEBACK;
                     checkArray[i].alt = TILEBACKALT;
@@ -93,6 +101,10 @@ function renderButton(url, alt) {
 
 function newGame() {
     //TODO: add code to implement the game
+    matchesTotal.textContent = "0";
+    missedTotal.textContent = "0";
+    remainingTotal.textContent = "0";
+    timeTotal.textContent = "0:00";
     let gameArray = generatePicArray();
     let gameTiles = document.querySelector("#tiles");
     gameTiles.textContent =  "";
