@@ -76,9 +76,9 @@ function handleCompare(img) {
                 state.missed++;
                 missedTotal.textContent = state.missed;
                 for (let i = 0; i < checkArray.length; i++) {
-                    setTimeout(function() {
-
-                    }, 500);
+                    // setTimeout(function() {
+                    //
+                    // }, 500);
                     checkArray[i].src = TILEBACK;
                     checkArray[i].alt = TILEBACKALT;
                     checkArray[i].classList.remove("Flipped");
@@ -89,6 +89,12 @@ function handleCompare(img) {
     }
 }
 
+function onClick(img, url, alt) {
+    img.src = url;
+    img.alt = alt;
+    handleCompare(img);
+}
+
 // Renders initial game state of 16 cards with Blank tile img and alt text
 function renderButton(url, alt) {
     let button = document.createElement("button");
@@ -97,11 +103,7 @@ function renderButton(url, alt) {
     img.alt = TILEBACKALT;
     button.appendChild(img);
     button.addEventListener("click", function() {
-        button.onclick = function() {
-            img.src = url;
-            img.alt = alt;
-            handleCompare(img);
-        };
+        onClick(img, url, alt);
     });
     return button;
 }
