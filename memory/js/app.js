@@ -41,12 +41,22 @@ function generatePicArray() {
 
 // Defining states of the game for game statistics
 let state = {
-    matches: 0,
-    missed: 0,
-    remaining: 8,
+    matches: undefined,
+    missed: undefined,
+    remaining: undefined,
     startTime: undefined,
     timer: undefined,
 };
+
+// Initializes beginning stats for a new game
+function initializeGame() {
+    state.matches = 0;
+    state.missed = 0;
+    state.remaining = 8;
+    matchesTotal.textContent = "0";
+    missedTotal.textContent = "0";
+    remainingTotal.textContent = "8";
+}
 
 let matchesTotal = document.querySelector("#matches");
 let missedTotal = document.querySelector("#missedMatches");
@@ -75,6 +85,16 @@ function handleCompare(img) {
                 }
                 if (state.matches === 8) {
                     clearInterval(state.timer);
+                    let finishTime = document.querySelector("#resultTime");
+                    let endGame = document.querySelector("#endGame");
+                    endGame.classList.remove("d-none");
+                    finishTime.textContent = timeTotal.textContent;
+                    document.querySelector("#playAgain")
+                        .addEventListener("click", function() {
+                            endGame.classList.add("d-none");
+                            initializeGame();
+                            newGame();
+                        });
                 }
             } else {
                 state.missed++;
@@ -124,9 +144,7 @@ function newGame() {
     state.timer = setInterval(function() {
         renderTime();
     }, 1000);
-    matchesTotal.textContent = "0";
-    missedTotal.textContent = "0";
-    remainingTotal.textContent = "0";
+    initializeGame();
     timeTotal.textContent = "0 min 0 sec";
     let gameArray = generatePicArray();
     let gameTiles = document.querySelector("#tiles");
