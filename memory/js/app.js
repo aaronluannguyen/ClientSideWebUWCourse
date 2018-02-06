@@ -95,24 +95,19 @@ function handleCompare(img) {
                             newGame();
                         });
                 }
+                checkArray = [];
             } else {
                 state.missed++;
                 missedTotal.textContent = state.missed;
-                // setTimeout(() => {
-                //     console.log("hey");
-                //     for (let i = 0; i < checkArray.length; i++) {
-                //         checkArray[i].src = TILEBACK;
-                //         checkArray[i].alt = TILEBACKALT;
-                //         checkArray[i].classList.remove("Flipped");
-                //     }
-                // }, 500);
-                for (let i = 0; i < checkArray.length; i++) {
-                    checkArray[i].src = TILEBACK;
-                    checkArray[i].alt = TILEBACKALT;
-                    checkArray[i].classList.remove("Flipped");
-                }
+                setTimeout(() => {
+                    for (let i = 0; i < checkArray.length; i++) {
+                        checkArray[i].src = TILEBACK;
+                        checkArray[i].alt = TILEBACKALT;
+                        checkArray[i].classList.remove("Flipped");
+                    }
+                    checkArray = [];
+                }, 500);
             }
-            checkArray = [];
         }
     }
 }
