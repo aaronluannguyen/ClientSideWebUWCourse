@@ -99,9 +99,9 @@ function handleCompare(img) {
             } else {
                 state.missed++;
                 missedTotal.textContent = state.missed;
-                setTimeout(function() {
-
-                }, 500);
+                setTimeout(() => {
+                    console.log("hey");
+                }, 1000);
                 for (let i = 0; i < checkArray.length; i++) {
                     checkArray[i].src = TILEBACK;
                     checkArray[i].alt = TILEBACKALT;
