@@ -3,10 +3,21 @@
     box-sizing: border-box;
 }
 
+body {
+    background: #000000;
+}
+
 .container {
     max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+}
+
+#stats {
+    padding-top: 3rem;
+}
+
+#stats p {
+    font-size: 2rem;
 }
 
 #stats {
@@ -19,13 +30,11 @@
     display: flex;
     flex-wrap: wrap;
     flex: 1 0 25%;
-    justify-content: space-around;
-    padding: 0 0;
 }
 
 #tiles button {
     background-color: black;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 #tiles button img {

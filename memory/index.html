@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Memory</title>
     <link rel="icon" href="img/page-icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -13,10 +14,10 @@
     or you can use some other set of HTML elements  -->
     <div class = "container">
         <div id="stats">
-            <p>matches: <span id="matches"></span></p>
-            <p>missed: <span id="missedMatches"></span></p>
-            <p>remaining: <span id="remaining"></span></p>
-            <p>time: <span id="time"></span></p>
+            <p class = "badge badge-pill badge-success">matches: <span id="matches"></span></p>
+            <p class = "badge badge-pill badge-danger">missed: <span id="missedMatches"></span></p>
+            <p class = "badge badge-pill badge-warning">remaining: <span id="remaining"></span></p>
+            <p class = "badge badge-pill badge-info">time: <span id="time"></span></p>
         </div>
 
         <!-- you can use this element as a container for all of your tile buttons/images -->

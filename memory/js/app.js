@@ -76,9 +76,6 @@ function handleCompare(img) {
                 state.missed++;
                 missedTotal.textContent = state.missed;
                 for (let i = 0; i < checkArray.length; i++) {
-                    // setTimeout(function() {
-                    //
-                    // }, 500);
                     checkArray[i].src = TILEBACK;
                     checkArray[i].alt = TILEBACKALT;
                     checkArray[i].classList.remove("Flipped");
