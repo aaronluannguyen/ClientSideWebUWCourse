@@ -99,6 +99,9 @@ function handleCompare(img) {
             } else {
                 state.missed++;
                 missedTotal.textContent = state.missed;
+                setTimeout(function() {
+
+                }, 500);
                 for (let i = 0; i < checkArray.length; i++) {
                     checkArray[i].src = TILEBACK;
                     checkArray[i].alt = TILEBACKALT;
@@ -110,7 +113,7 @@ function handleCompare(img) {
     }
 }
 
-// This function handles the click event and appropiately flips the card to the corresponding img
+// This function handles the click event and appropriately flips the card to the corresponding img
 // and calls handleCompare for the comparison logic
 function onClick(img, url, alt) {
     img.src = url;
