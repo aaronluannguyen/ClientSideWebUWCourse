@@ -71,9 +71,8 @@ let checkArray = [];
 function handleCompare(img) {
     if (!img.classList.contains("Matched") && !img.classList.contains("Flipped")) {
         img.classList.add("Flipped");
-        if (checkArray.length < 1) {
-            checkArray.push(img);
-        } else if (checkArray.length === 1) {
+        checkArray.push(img);
+        if (checkArray.length === 2) {
             checkArray.push(img);
             if (checkArray[0].src === checkArray[1].src) {
                 state.matches++;
@@ -99,9 +98,14 @@ function handleCompare(img) {
             } else {
                 state.missed++;
                 missedTotal.textContent = state.missed;
-                setTimeout(() => {
-                    console.log("hey");
-                }, 1000);
+                // setTimeout(() => {
+                //     console.log("hey");
+                //     for (let i = 0; i < checkArray.length; i++) {
+                //         checkArray[i].src = TILEBACK;
+                //         checkArray[i].alt = TILEBACKALT;
+                //         checkArray[i].classList.remove("Flipped");
+                //     }
+                // }, 500);
                 for (let i = 0; i < checkArray.length; i++) {
                     checkArray[i].src = TILEBACK;
                     checkArray[i].alt = TILEBACKALT;
