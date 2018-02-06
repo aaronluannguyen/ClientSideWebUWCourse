@@ -39,6 +39,7 @@ function generatePicArray() {
     return gameArray;
 }
 
+// Defining states of the game for game statistics
 let state = {
     matches: 0,
     missed: 0,
@@ -54,6 +55,9 @@ let timeTotal = document.querySelector("#time");
 
 let checkArray = [];
 
+// Handles user's 1, 2 turn and compares the two images. If they match, then the images stay flipped.
+// If they do not match, then there will be a slight delay before both imgs are flipped back to their
+// blank card defaults. This function will also update the game statistics accordingly.
 function handleCompare(img) {
     if (!img.classList.contains("Matched") && !img.classList.contains("Flipped")) {
         img.classList.add("Flipped");
@@ -86,6 +90,8 @@ function handleCompare(img) {
     }
 }
 
+// This function handles the click event and appropiately flips the card to the corresponding img
+// and calls handleCompare for the comparison logic
 function onClick(img, url, alt) {
     img.src = url;
     img.alt = alt;
@@ -105,11 +111,13 @@ function renderButton(url, alt) {
     return button;
 }
 
+// This function updates time displayed on the timer
 function renderTime() {
     let time = Date.now() - state.startTime;
     timeTotal.textContent = Math.floor(time / 60000) + " min " + Math.floor(time / 1000 % 60) + " sec";
 }
 
+// This function runs the memory matching game
 function newGame() {
     //TODO: add code to implement the game
     state.startTime = Date.now();
