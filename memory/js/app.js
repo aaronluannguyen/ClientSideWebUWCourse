@@ -126,6 +126,7 @@ function renderButton(url, alt) {
     let img = document.createElement("img");
     img.src = TILEBACK;
     img.alt = TILEBACKALT;
+    button.setAttribute("aria-label", "Image");
     button.appendChild(img);
     button.addEventListener("click", function() {
         onClick(img, url, alt);
