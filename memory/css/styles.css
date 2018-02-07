@@ -1,1 +1,43 @@
 /* define any style rules you need here */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #000000;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#stats {
+    padding-top: 5px;
+}
+
+#stats p {
+    font-size: 2rem;
+}
+
+#stats {
+    display: flex;
+    flex: 1 0 25%;
+    justify-content: space-between;
+}
+
+#tiles {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 0 25%;
+}
+
+#tiles button {
+    background-color: black;
+    margin-bottom: 5px;
+}
+
+#tiles button img {
+    max-width: 225px;
+    max-height: 225px;
+}
