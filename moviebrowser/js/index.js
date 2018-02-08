@@ -5,7 +5,7 @@
 const API_KEY = "7424f79bc878b822399ede1557d0f2c8";
 const BASE = "https://api.themoviedb.org/3/"
 const GET_GENRES = BASE + "genre/movie/list?api_key=" + API_KEY;
-const DISCOVER = BASE + "discover/movie?api_key=" + API_KEY;
+const DISCOVER = BASE + "discover/movie?api_key=" + API_KEY + "&page=";
 const IMG_BASE = "https://image.tmdb.org/t/p/w500/";
 
 // Elements
@@ -118,6 +118,7 @@ function makeMovieCards(results) {
 }
 
 function renderMovies(root) {
+    console.log(root.results);
     currentPageNum.textContent = currentPage;
     totalPageNum.textContent = root.total_pages;
     maxPage = root.total_pages;
@@ -140,14 +141,14 @@ function displayMovies(search) {
 
 generateGenreFilters();
 currentDisplay = DISCOVER;
-currentPage = 1;
-displayMovies(currentDisplay);
+displayMovies(currentDisplay + currentPage);
 
 document.querySelector("#prevPage")
     .addEventListener("click", function() {
         if (currentPage >= 2) {
             currentPage--;
-            displayMovies(currentDisplay + "&page" + currentPage);
+            let newSearch = currentDisplay + currentPage;
+            displayMovies(newSearch);
             currentPageNum.textContent = currentPage;
         }
     });
@@ -156,7 +157,8 @@ document.querySelector("#nextPage")
     .addEventListener("click", function() {
         if (currentPage < maxPage) {
             currentPage++;
-            displayMovies(currentDisplay + "&page" + currentPage);
+            let newSearch = currentDisplay + currentPage;
+            displayMovies(newSearch);
             currentPageNum.textContent = currentPage;
         }
     });
