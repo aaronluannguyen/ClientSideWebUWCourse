@@ -28,3 +28,7 @@
 #currentPage {
     color: black;
 }
+
+.card {
+    min-width: 300px;
+}
