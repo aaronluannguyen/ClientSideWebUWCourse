@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .jumbotron {
     background-image: url("../img/header1.jpg");
     background-position: center;
@@ -10,5 +14,7 @@
 }
 
 .container {
+    justify-content: center;
     max-width: 98vw;
+    margin: 0 auto;
 }
