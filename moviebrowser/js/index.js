@@ -104,6 +104,7 @@ function makeMovieCards(results) {
         body.appendChild(description);
         body.classList.add("card-body");
 
+        // MAKE SURE IMAGE FIELD IS NOT NULL
         img.src = IMG_BASE + results[i].poster_path;
         img.classList.add("card-img-top");
 
@@ -118,10 +119,10 @@ function makeMovieCards(results) {
 }
 
 function renderMovies(root) {
-    console.log(root.results);
     currentPageNum.textContent = currentPage;
     totalPageNum.textContent = root.total_pages;
     maxPage = root.total_pages;
+    MOVIE_DISPLAY.textContent = "";
     makeMovieCards(root.results);
 }
 
