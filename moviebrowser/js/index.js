@@ -3,7 +3,8 @@
 
 // API Related Constants
 const API_KEY = "7424f79bc878b822399ede1557d0f2c8";
-const GENRES_SEARCH = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + API_KEY;
+const BASE = "https://api.themoviedb.org/3/"
+const GET_GENRES = BASE + "genre/movie/list?api_key=" + API_KEY;
 
 // Elements
 const ERROR_ALERT_DIV = document.querySelector(".alert-danger");
@@ -69,7 +70,7 @@ function renderGenreFilters(genres) {
 }
 
 function generateGenreFilters() {
-    fetch(GENRES_SEARCH)
+    fetch(GET_GENRES)
         .then(handleResponse)
         .then(renderGenreFilters)
         .catch(handleError);
