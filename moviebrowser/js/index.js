@@ -76,7 +76,8 @@ function renderGenreFilters(genres) {
 }
 
 function makeMovieGrid(movie) {
-    movie.classList.add("col-sm-12");
+    movie.classList.add("col");
+    movie.classList.add("col-6");
     movie.classList.add("col-md-4");
     movie.classList.add("col-lg-3");
 }
