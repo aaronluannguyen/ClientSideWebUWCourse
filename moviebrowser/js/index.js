@@ -13,10 +13,13 @@ const ERROR_ALERT_DIV = document.querySelector(".alert-danger");
 const GENRE_LIST = document.querySelector("#genreFilters");
 const MOVIE_DISPLAY = document.querySelector("#results");
 
-
-let selectedGenre;
+// States to keep track of
+let selectedGenre = undefined;
 let currentPageNum = document.querySelector("#pageNum");
 let totalPageNum = document.querySelector("#totalPages");
+let currentDisplay = undefined;
+let currentPage = 1;
+let maxPage = undefined;
 
 
 /**
@@ -115,9 +118,9 @@ function makeMovieCards(results) {
 }
 
 function renderMovies(root) {
-    console.log(root.results);
-    currentPageNum.textContent = root.page;
+    currentPageNum.textContent = currentPage;
     totalPageNum.textContent = root.total_pages;
+    maxPage = root.total_pages;
     makeMovieCards(root.results);
 }
 
@@ -128,12 +131,32 @@ function generateGenreFilters() {
         .catch(handleError);
 }
 
-function initialMovies() {
-    fetch(DISCOVER)
+function displayMovies(search) {
+    fetch(search)
         .then(handleResponse)
         .then(renderMovies)
         .catch(handleError);
 }
 
 generateGenreFilters();
-initialMovies();
+currentDisplay = DISCOVER;
+currentPage = 1;
+displayMovies(currentDisplay);
+
+document.querySelector("#prevPage")
+    .addEventListener("click", function() {
+        if (currentPage >= 2) {
+            currentPage--;
+            displayMovies(currentDisplay + "&page" + currentPage);
+            currentPageNum.textContent = currentPage;
+        }
+    });
+
+document.querySelector("#nextPage")
+    .addEventListener("click", function() {
+        if (currentPage < maxPage) {
+            currentPage++;
+            displayMovies(currentDisplay + "&page" + currentPage);
+            currentPageNum.textContent = currentPage;
+        }
+    });
