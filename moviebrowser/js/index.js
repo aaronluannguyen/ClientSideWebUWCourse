@@ -5,13 +5,19 @@
 const API_KEY = "7424f79bc878b822399ede1557d0f2c8";
 const BASE = "https://api.themoviedb.org/3/"
 const GET_GENRES = BASE + "genre/movie/list?api_key=" + API_KEY;
+const DISCOVER = BASE + "discover/movie?api_key=" + API_KEY;
+const IMG_BASE = "https://image.tmdb.org/t/p/w500/";
 
 // Elements
 const ERROR_ALERT_DIV = document.querySelector(".alert-danger");
 const GENRE_LIST = document.querySelector("#genreFilters");
+const MOVIE_DISPLAY = document.querySelector("#results");
 
 
 let selectedGenre;
+let currentPageNum = document.querySelector("#pageNum");
+let totalPageNum = document.querySelector("#totalPages");
+
 
 /**
  * Handles errors that occur while fetching
@@ -69,6 +75,52 @@ function renderGenreFilters(genres) {
     }
 }
 
+function makeMovieGrid(movie) {
+    movie.classList.add("col-sm-12");
+    movie.classList.add("col-md-4");
+    movie.classList.add("col-lg-3");
+}
+
+function makeMovieCards(results) {
+    for (let i = 0; i < results.length; i++) {
+        let card = document.createElement("div");
+        let img = document.createElement("img");
+        card.appendChild(img);
+
+        let body = document.createElement("div");
+        card.appendChild(body);
+
+        card.classList.add("card");
+
+        makeMovieGrid(card);
+
+        let header = document.createElement("h5");
+        body.appendChild(header);
+
+        let description = document.createElement("p");
+        body.appendChild(description);
+        body.classList.add("card-body");
+
+        img.src = IMG_BASE + results[i].poster_path;
+        img.classList.add("card-img-top");
+
+        header.textContent = results[i].title;
+        header.classList.add("card-title");
+
+        description.textContent = results[i].overview;
+        description.classList.add("card-text");
+
+        MOVIE_DISPLAY.appendChild(card);
+    }
+}
+
+function renderMovies(root) {
+    console.log(root.results);
+    currentPageNum.textContent = root.page;
+    totalPageNum.textContent = root.total_pages;
+    makeMovieCards(root.results);
+}
+
 function generateGenreFilters() {
     fetch(GET_GENRES)
         .then(handleResponse)
@@ -76,4 +128,12 @@ function generateGenreFilters() {
         .catch(handleError);
 }
 
+function initialMovies() {
+    fetch(DISCOVER)
+        .then(handleResponse)
+        .then(renderMovies)
+        .catch(handleError);
+}
+
 generateGenreFilters();
+initialMovies();
