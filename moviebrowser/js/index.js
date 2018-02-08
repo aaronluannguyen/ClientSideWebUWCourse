@@ -9,6 +9,9 @@ const GENRES_SEARCH = "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
 const ERROR_ALERT_DIV = document.querySelector(".alert-danger");
 const GENRE_LIST = document.querySelector("#genreFilters");
 
+
+let selectedGenre;
+
 /**
  * Handles errors that occur while fetching
  * @param {Error} err
@@ -51,6 +54,7 @@ function createGenreFilter() {
 
 function renderGenreFilters(genres) {
     let allGenres = createGenreFilter();
+    selectedGenre = allGenres;
     allGenres.classList.add("active");
     allGenres.textContent = "All";
     GENRE_LIST.appendChild(allGenres);
@@ -58,6 +62,8 @@ function renderGenreFilters(genres) {
     for (let i = 0; i < genreList.length; i++) {
         let filter = createGenreFilter();
         filter.textContent = genreList[i].name;
+        // Add function here to handle click
+        // and update which genre is active
         GENRE_LIST.appendChild(filter);
     }
 }
