@@ -5,7 +5,7 @@
 const API_KEY = "7424f79bc878b822399ede1557d0f2c8";
 const BASE = "https://api.themoviedb.org/3/"
 const GET_GENRES = BASE + "genre/movie/list?api_key=" + API_KEY;
-const DISCOVER = BASE + "discover/movie?api_key=" + API_KEY + "&page=";
+const DISCOVER = BASE + "discover/movie?api_key=" + API_KEY;
 const IMG_BASE = "https://image.tmdb.org/t/p/w500/";
 
 // Elements
@@ -15,6 +15,7 @@ const MOVIE_DISPLAY = document.querySelector("#results");
 
 // States to keep track of
 let selectedGenre = undefined;
+let allGenres = undefined;
 let currentPageNum = document.querySelector("#pageNum");
 let totalPageNum = document.querySelector("#totalPages");
 let currentDisplay = undefined;
@@ -62,19 +63,40 @@ function createGenreFilter() {
     return filter;
 }
 
+function searchGenre(genre) {
+    selectedGenre.classList.remove("active");
+    selectedGenre = genre;
+    selectedGenre.classList.add("active");
+    if (genre.genreID) {
+        currentDisplay = DISCOVER + "&with_genres=" + genre.genreID
+        displayMovies(currentDisplay);
+    } else {
+        currentDisplay = DISCOVER;
+        displayMovies(currentDisplay);
+    }
+}
+
 function renderGenreFilters(genres) {
-    let allGenres = createGenreFilter();
-    selectedGenre = allGenres;
+    allGenres = createGenreFilter();
     allGenres.classList.add("active");
     allGenres.textContent = "All";
+    allGenres.addEventListener("click", function() {
+        searchGenre(allGenres);
+    });
     GENRE_LIST.appendChild(allGenres);
+    selectedGenre = allGenres;
+
     let genreList = genres.genres;
     for (let i = 0; i < genreList.length; i++) {
-        let filter = createGenreFilter();
-        filter.textContent = genreList[i].name;
+        let genreButton = createGenreFilter();
+        genreButton.genreID = genreList[i].id;
+        genreButton.textContent = genreList[i].name;
         // Add function here to handle click
         // and update which genre is active
-        GENRE_LIST.appendChild(filter);
+        genreButton.addEventListener("click", function() {
+            searchGenre(genreButton)
+        });
+        GENRE_LIST.appendChild(genreButton);
     }
 }
 
@@ -143,13 +165,13 @@ function displayMovies(search) {
 
 generateGenreFilters();
 currentDisplay = DISCOVER;
-displayMovies(currentDisplay + currentPage);
+displayMovies(currentDisplay);
 
 document.querySelector("#prevPage")
     .addEventListener("click", function() {
         if (currentPage >= 2) {
             currentPage--;
-            let newSearch = currentDisplay + currentPage;
+            let newSearch = currentDisplay + "&page=" + currentPage;
             displayMovies(newSearch);
             currentPageNum.textContent = currentPage;
         }
@@ -159,8 +181,10 @@ document.querySelector("#nextPage")
     .addEventListener("click", function() {
         if (currentPage < maxPage) {
             currentPage++;
-            let newSearch = currentDisplay + currentPage;
+            let newSearch = currentDisplay + "&page=" + currentPage;
             displayMovies(newSearch);
             currentPageNum.textContent = currentPage;
         }
     });
+
+// add event listener for search bar
