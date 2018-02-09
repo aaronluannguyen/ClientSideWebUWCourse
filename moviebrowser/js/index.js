@@ -120,8 +120,9 @@ function makeMovieCards(results) {
 
 function renderMovies(root) {
     currentPageNum.textContent = currentPage;
-    totalPageNum.textContent = root.total_pages;
-    maxPage = root.total_pages;
+    let totalPages = root.total_pages;
+    maxPage = Math.min(totalPages, 1000);
+    totalPageNum.textContent = maxPage;
     MOVIE_DISPLAY.textContent = "";
     makeMovieCards(root.results);
 }
