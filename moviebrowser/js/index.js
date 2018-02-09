@@ -33,7 +33,7 @@ function handleError(err) {
     console.error(err);
     //TODO: display error message in ERROR_ALERT_DIV
     //so the user can see it
-    ERROR_ALERT_DIV.textContent = err.message;
+    ERROR_ALERT_DIV.textContent = "Search Error" + err.message;
     ERROR_ALERT_DIV.classList.remove("d-none");
 }
 
@@ -150,6 +150,7 @@ function makeMovieCards(results) {
 }
 
 function renderMovies(root) {
+    ERROR_ALERT_DIV.classList.add("d-none");
     currentPageNum.textContent = currentPage;
     let totalPages = root.total_pages;
     maxPage = Math.min(totalPages, 1000);
