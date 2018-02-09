@@ -31,8 +31,6 @@ let searchInput = document.querySelector("input");
  */
 function handleError(err) {
     console.error(err);
-    //TODO: display error message in ERROR_ALERT_DIV
-    //so the user can see it
     ERROR_ALERT_DIV.textContent = "Search Error" + err.message;
     ERROR_ALERT_DIV.classList.remove("d-none");
 }
