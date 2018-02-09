@@ -22,6 +22,7 @@ let totalPageNum = document.querySelector("#totalPages");
 let currentDisplay = undefined;
 let currentPage = 1;
 let maxPage = undefined;
+let searchInput = document.querySelector("input");
 
 
 /**
@@ -65,6 +66,7 @@ function createGenreFilter() {
 }
 
 function searchGenre(genre) {
+    searchInput.value = "";
     selectedGenre.classList.remove("active");
     selectedGenre = genre;
     selectedGenre.classList.add("active");
