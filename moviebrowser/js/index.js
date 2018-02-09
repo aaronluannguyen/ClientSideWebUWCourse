@@ -67,6 +67,7 @@ function createGenreFilter() {
 
 function searchGenre(genre) {
     searchInput.value = "";
+    currentPage = 1;
     selectedGenre.classList.remove("active");
     selectedGenre = genre;
     selectedGenre.classList.add("active");
