@@ -21,35 +21,36 @@
             <div id="genreList" class="col-sm-2">
                 <div id="genreFilters" class="list-group"></div>
             </div>
-            <div id="main" class="col-sm-10">
-                <form action="#" id="search-form">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="What movies would you like to find today?">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" aria-label="search">
-                                <div class="d-flex align-items-center">
-                                    <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                    </svg>
-                                </div>
-                            </button>
+            <div class="col-sm-10">
+                <div id="resultsPage">
+                    <form action="#" id="search-form">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="What movies would you like to find today?">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit" aria-label="search">
+                                    <div class="d-flex align-items-center">
+                                        <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <ul class="pagination">
-                    <li class="page-item"><a id="prevPage" class="page-link" href="#">Prev</a></li>
-                    <li class="page-item"><a id="currentPage" class="page-link" href="#">Page <span id="pageNum"></span> of <span id="totalPages"></span></a></li>
-                    <li class="page-item"><a id="nextPage" class="page-link" href="#">Next</a></li>
-                </ul>
-                <div class="alert alert-danger d-none"></div>
+                    </form>
+                    <ul class="pagination">
+                        <li class="page-item"><a id="prevPage" class="page-link" href="#">Prev</a></li>
+                        <li class="page-item"><a id="currentPage" class="page-link" href="#">Page <span id="pageNum"></span> of <span id="totalPages"></span></a></li>
+                        <li class="page-item"><a id="nextPage" class="page-link" href="#">Next</a></li>
+                    </ul>
+                    <div class="alert alert-danger d-none"></div>
+                    <div id="results" class="row"></div>
+                </div>
+                <div id="singleMoviePage">
 
-                <div id="results" class="row"></div>
+                </div>
             </div>
         </div>
     </main>
-
-
-
 
 
     <!-- fetch() polyfill for older browsers that don't implement it natively -->
