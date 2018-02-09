@@ -7,6 +7,7 @@ const BASE = "https://api.themoviedb.org/3/"
 const GET_GENRES = BASE + "genre/movie/list?api_key=" + API_KEY;
 const DISCOVER = BASE + "discover/movie?api_key=" + API_KEY;
 const IMG_BASE = "https://image.tmdb.org/t/p/w500/";
+const USER_SEARCH = BASE + "search/movie?api_key=" + API_KEY + "&query=";
 
 // Elements
 const ERROR_ALERT_DIV = document.querySelector(".alert-danger");
@@ -187,4 +188,13 @@ document.querySelector("#nextPage")
         }
     });
 
-// add event listener for search bar
+document.querySelector("#search-form")
+    .addEventListener("submit", function(evt) {
+        evt.preventDefault();
+        let userSearch = this.querySelector("input").value;
+        currentDisplay = USER_SEARCH + userSearch;
+        selectedGenre.classList.remove("active");
+        selectedGenre = allGenres;
+        selectedGenre.classList.add("active");
+        displayMovies(currentDisplay);
+    });
