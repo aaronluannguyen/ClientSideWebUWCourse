@@ -95,8 +95,6 @@ function renderGenreFilters(genres) {
         let genreButton = createGenreFilter();
         genreButton.genreID = genreList[i].id;
         genreButton.textContent = genreList[i].name;
-        // Add function here to handle click
-        // and update which genre is active
         genreButton.addEventListener("click", function() {
             searchGenre(genreButton)
         });
@@ -130,8 +128,13 @@ function makeMovieCards(results) {
         body.appendChild(description);
         body.classList.add("card-body");
 
-        // MAKE SURE IMAGE FIELD IS NOT NULL
-        img.src = IMG_BASE + results[i].poster_path;
+        if (results[i].poster_path) {
+            img.src = IMG_BASE + results[i].poster_path;
+        } else if (results[i].backdrop_path) {
+            img.src = IMG_BASE + results[i].backdrop_path;
+        } else {
+            img.src = "img/imageNA.jpg";
+        }
         img.classList.add("card-img-top");
 
         header.textContent = results[i].title;
@@ -201,5 +204,6 @@ document.querySelector("#search-form")
         selectedGenre.classList.remove("active");
         selectedGenre = allGenres;
         selectedGenre.classList.add("active");
+        currentPage = 1;
         displayMovies(currentDisplay);
     });
