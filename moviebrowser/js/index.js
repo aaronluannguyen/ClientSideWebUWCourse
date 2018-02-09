@@ -139,6 +139,8 @@ function makeMovieCards(results) {
         description.textContent = results[i].overview;
         description.classList.add("card-text");
 
+        // Add event listener for more detailed info about movie
+
         MOVIE_DISPLAY.appendChild(card);
     }
 }
