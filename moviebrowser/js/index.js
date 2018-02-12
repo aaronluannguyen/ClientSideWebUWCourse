@@ -3,12 +3,11 @@
 
 // API Related Constants
 const API_KEY = "7424f79bc878b822399ede1557d0f2c8";
-const BASE = "https://api.themoviedb.org/3/"
+const BASE = "https://api.themoviedb.org/3/";
 const GET_GENRES = BASE + "genre/movie/list?api_key=" + API_KEY;
 const DISCOVER = BASE + "discover/movie?api_key=" + API_KEY;
 const IMG_BASE = "https://image.tmdb.org/t/p/w500/";
 const USER_SEARCH = BASE + "search/movie?api_key=" + API_KEY + "&query=";
-const MOVIE_SPECS = BASE + "movie/";
 
 // Elements
 const ERROR_ALERT_DIV = document.querySelector(".alert-danger");
@@ -110,7 +109,18 @@ function makeMovieGrid(movie) {
     movie.classList.add("col-lg-3");
 }
 
-function displayMovieSpecs(movieID) {
+let movieImgPlace = document.querySelector("#singleMovieImg");
+let movieImg = document.createElement("img");
+function displayMovieSpecs(root) {
+    console.log(root);
+    if (root.poster_path) {
+        movieImg.src = IMG_BASE + root.poster_path;
+    } else if (root.backdrop_path) {
+        movieImg.src = IMG_BASE + root.backdrop_path;
+    } else {
+        movieImg.src = "img/imageNA.jpg";
+    }
+    movieImgPlace.appendChild(movieImg);
 
 }
 
@@ -154,7 +164,8 @@ function makeMovieCards(results) {
             pageNav.classList.add("d-none");
             searchPage.classList.add("d-none");
             singleMoviePage.classList.remove("d-none");
-            fetch(BASE + "movie/" + movieID + "?" + API_KEY)
+            fetch(BASE + "movie/" + results[i].id + "?api_key=" + API_KEY)
+                .then(handleResponse)
                 .then(displayMovieSpecs)
                 .catch(handleError);
         });
