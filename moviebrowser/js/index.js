@@ -8,6 +8,7 @@ const GET_GENRES = BASE + "genre/movie/list?api_key=" + API_KEY;
 const DISCOVER = BASE + "discover/movie?api_key=" + API_KEY;
 const IMG_BASE = "https://image.tmdb.org/t/p/w500/";
 const USER_SEARCH = BASE + "search/movie?api_key=" + API_KEY + "&query=";
+const MOVIE_SPECS = BASE + "movie/";
 
 // Elements
 const ERROR_ALERT_DIV = document.querySelector(".alert-danger");
@@ -109,6 +110,10 @@ function makeMovieGrid(movie) {
     movie.classList.add("col-lg-3");
 }
 
+function displayMovieSpecs(movieID) {
+
+}
+
 function makeMovieCards(results) {
     for (let i = 0; i < results.length; i++) {
         let card = document.createElement("div");
@@ -149,6 +154,9 @@ function makeMovieCards(results) {
             pageNav.classList.add("d-none");
             searchPage.classList.add("d-none");
             singleMoviePage.classList.remove("d-none");
+            fetch(BASE + "movie/" + movieID + "?" + API_KEY)
+                .then(displayMovieSpecs)
+                .catch(handleError);
         });
 
         MOVIE_DISPLAY.appendChild(card);
