@@ -34,7 +34,7 @@ let pageNav = document.querySelector(".pagination");
  */
 function handleError(err) {
     console.error(err);
-    ERROR_ALERT_DIV.textContent = "Search Error" + err.message;
+    ERROR_ALERT_DIV.textContent = "Search Error " + err.message;
     ERROR_ALERT_DIV.classList.remove("d-none");
 }
 
