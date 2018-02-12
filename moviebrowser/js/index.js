@@ -112,7 +112,6 @@ function makeMovieGrid(movie) {
 let movieImgPlace = document.querySelector("#singleMovieImg");
 let movieImg = document.createElement("img");
 function displayMovieSpecs(root) {
-    console.log(root);
     if (root.poster_path) {
         movieImg.src = IMG_BASE + root.poster_path;
     } else if (root.backdrop_path) {
@@ -161,6 +160,7 @@ function makeMovieCards(results) {
 
         // Add event listener for more detailed info about movie
         card.addEventListener("click", function() {
+            movieImg.src = "";
             pageNav.classList.add("d-none");
             searchPage.classList.add("d-none");
             singleMoviePage.classList.remove("d-none");
@@ -192,12 +192,12 @@ function generateGenreFilters() {
 }
 
 function displayMovies(search) {
+    searchPage.classList.remove("d-none");
+    pageNav.classList.remove("d-none");
     fetch(search)
         .then(handleResponse)
         .then(renderMovies)
         .catch(handleError);
-    searchPage.classList.remove("d-none");
-    pageNav.classList.remove("d-none");
 }
 
 generateGenreFilters();
