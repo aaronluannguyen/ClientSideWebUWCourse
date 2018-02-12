@@ -23,8 +23,9 @@ let currentDisplay = undefined;
 let currentPage = 1;
 let maxPage = undefined;
 let searchInput = document.querySelector("input");
-let mainPage = document.querySelector("mainPage");
-let singleMoviePage = document.querySelector("singleMoviePage");
+let singleMoviePage = document.querySelector("#singleMoviePage");
+let searchPage = document.querySelector("#results");
+let pageNav = document.querySelector(".pagination");
 
 
 /**
@@ -96,7 +97,7 @@ function renderGenreFilters(genres) {
         genreButton.genreID = genreList[i].id;
         genreButton.textContent = genreList[i].name;
         genreButton.addEventListener("click", function() {
-            searchGenre(genreButton)
+            searchGenre(genreButton);
         });
         GENRE_LIST.appendChild(genreButton);
     }
@@ -145,7 +146,8 @@ function makeMovieCards(results) {
 
         // Add event listener for more detailed info about movie
         card.addEventListener("click", function() {
-            mainPage.classList.add("d-none");
+            pageNav.classList.add("d-none");
+            searchPage.classList.add("d-none");
             singleMoviePage.classList.remove("d-none");
         });
 
@@ -175,6 +177,8 @@ function displayMovies(search) {
         .then(handleResponse)
         .then(renderMovies)
         .catch(handleError);
+    searchPage.classList.remove("d-none");
+    pageNav.classList.remove("d-none");
 }
 
 generateGenreFilters();
