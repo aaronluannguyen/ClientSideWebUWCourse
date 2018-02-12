@@ -192,12 +192,12 @@ function generateGenreFilters() {
 }
 
 function displayMovies(search) {
-    searchPage.classList.remove("d-none");
-    pageNav.classList.remove("d-none");
     fetch(search)
         .then(handleResponse)
         .then(renderMovies)
         .catch(handleError);
+    searchPage.classList.remove("d-none");
+    pageNav.classList.remove("d-none");
 }
 
 generateGenreFilters();
