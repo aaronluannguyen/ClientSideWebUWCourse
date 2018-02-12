@@ -23,6 +23,8 @@ let currentDisplay = undefined;
 let currentPage = 1;
 let maxPage = undefined;
 let searchInput = document.querySelector("input");
+let mainPage = document.querySelector("mainPage");
+let singleMoviePage = document.querySelector("singleMoviePage");
 
 
 /**
@@ -142,6 +144,10 @@ function makeMovieCards(results) {
         description.classList.add("card-text");
 
         // Add event listener for more detailed info about movie
+        card.addEventListener("click", function() {
+            mainPage.classList.add("d-none");
+            singleMoviePage.classList.remove("d-none");
+        });
 
         MOVIE_DISPLAY.appendChild(card);
     }
