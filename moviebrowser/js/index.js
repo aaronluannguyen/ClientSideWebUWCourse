@@ -191,13 +191,17 @@ function generateGenreFilters() {
         .catch(handleError);
 }
 
+function clearCurrentSearch() {
+    searchPage.classList.remove("d-none");
+    pageNav.classList.remove("d-none");
+}
+
 function displayMovies(search) {
     fetch(search)
         .then(handleResponse)
         .then(renderMovies)
+        .then(clearCurrentSearch)
         .catch(handleError);
-    searchPage.classList.remove("d-none");
-    pageNav.classList.remove("d-none");
 }
 
 generateGenreFilters();
