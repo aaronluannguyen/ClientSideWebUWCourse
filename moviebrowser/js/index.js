@@ -110,7 +110,14 @@ function makeMovieGrid(movie) {
 }
 
 let movieImgPlace = document.querySelector("#singleMovieImg");
+let singleMovieContent = document.querySelector("#singleMovieContent");
 let movieSpecImg = document.createElement("img");
+let movieTitle = document.createElement("h2");
+let tagLine = document.createElement("h5");
+let overview = document.createElement("p");
+let singleMovieGenres = document.createElement("p");
+let productionCompanies = document.createElement("p");
+let homePage = document.createElement("a");
 function displayMovieSpecs(root) {
     if (root.poster_path) {
         movieSpecImg.src = IMG_BASE + root.poster_path;
@@ -121,6 +128,37 @@ function displayMovieSpecs(root) {
     }
     movieImgPlace.appendChild(movieSpecImg);
 
+    movieTitle.textContent = root.title;
+    singleMovieContent.appendChild(movieTitle);
+
+    tagLine.textContent = root.tagline;
+    singleMovieContent.appendChild(tagLine);
+
+    overview.textContent = "Overview: " + root.overview;
+    singleMovieContent.appendChild(overview);
+
+    let genresAsString = "Genres: " + root.genres[0].name;
+    for (let i = 1; i < root.genres.length; i++) {
+        genresAsString += ", " + root.genres[i].name;
+    }
+    singleMovieGenres.textContent = genresAsString;
+    singleMovieContent.appendChild(singleMovieGenres);
+
+    let productionCompaniesString = "Production Companies: " + root.production_companies[0].name;
+    for (let i = 1; i < root.production_companies.length; i++) {
+        productionCompaniesString += ", " + root.production_companies[i].name;
+    }
+    productionCompanies.textContent = productionCompaniesString;
+    singleMovieContent.appendChild(productionCompanies);
+
+    if (root.homepage) {
+        homePage.href = root.homepage;
+        homePage.textContent = "Home page here";
+    } else {
+        homePage.href = "";
+        homePage.textContent = "Home page not found";
+    }
+    singleMovieContent.appendChild(homePage);
 }
 
 function makeMovieCards(results) {
