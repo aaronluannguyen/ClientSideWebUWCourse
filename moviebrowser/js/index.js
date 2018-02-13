@@ -110,16 +110,16 @@ function makeMovieGrid(movie) {
 }
 
 let movieImgPlace = document.querySelector("#singleMovieImg");
-let movieImg = document.createElement("img");
+let movieSpecImg = document.createElement("img");
 function displayMovieSpecs(root) {
     if (root.poster_path) {
-        movieImg.src = IMG_BASE + root.poster_path;
+        movieSpecImg.src = IMG_BASE + root.poster_path;
     } else if (root.backdrop_path) {
-        movieImg.src = IMG_BASE + root.backdrop_path;
+        movieSpecImg.src = IMG_BASE + root.backdrop_path;
     } else {
-        movieImg.src = "img/imageNA.jpg";
+        movieSpecImg.src = "img/imageNA.jpg";
     }
-    movieImgPlace.appendChild(movieImg);
+    movieImgPlace.appendChild(movieSpecImg);
 
 }
 
@@ -160,7 +160,7 @@ function makeMovieCards(results) {
 
         // Add event listener for more detailed info about movie
         card.addEventListener("click", function() {
-            movieImg.src = "";
+            movieSpecImg.src = "";
             pageNav.classList.add("d-none");
             searchPage.classList.add("d-none");
             singleMoviePage.classList.remove("d-none");
