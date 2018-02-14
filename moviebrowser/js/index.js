@@ -114,10 +114,10 @@ let singleMovieContent = document.querySelector("#singleMovieContent");
 let movieSpecImg = document.querySelector("#singleMovieImg");
 let movieTitle = document.querySelector("#movieTitle");
 let tagLine = document.querySelector("#tagLine");
-let overview = createGenreFilter();
-let singleMovieGenres = createGenreFilter();
-let productionCompanies = createGenreFilter();
-let homePage = createGenreFilter();
+let overview = document.createElement("li");
+let singleMovieGenres = document.createElement("li");
+let productionCompanies = document.createElement("li");
+let homePage = document.createElement("li");
 function displayMovieSpecs(root) {
     if (root.poster_path) {
         movieSpecImg.src = IMG_BASE + root.poster_path;
