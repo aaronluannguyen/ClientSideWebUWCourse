@@ -109,7 +109,6 @@ function makeMovieGrid(movie) {
     movie.classList.add("col-lg-3");
 }
 
-let movieImgPlace = document.querySelector("#singleMovieImg");
 let singleMovieContent = document.querySelector("#singleMovieContent");
 let movieSpecImg = document.querySelector("#singleMovieImg");
 let movieTitle = document.querySelector("#movieTitle");
@@ -132,6 +131,7 @@ function displayMovieSpecs(root) {
     tagLine.textContent = root.tagline;
 
     overview.textContent = "Overview: " + root.overview;
+    overview.classList.add("list-group-item");
     singleMovieContent.appendChild(overview);
 
     let genresAsString = "Genres: " + root.genres[0].name;
@@ -139,6 +139,7 @@ function displayMovieSpecs(root) {
         genresAsString += ", " + root.genres[i].name;
     }
     singleMovieGenres.textContent = genresAsString;
+    singleMovieGenres.classList.add("list-group-item");
     singleMovieContent.appendChild(singleMovieGenres);
 
     let productionCompaniesString = "Production Companies: " + root.production_companies[0].name;
@@ -146,8 +147,10 @@ function displayMovieSpecs(root) {
         productionCompaniesString += ", " + root.production_companies[i].name;
     }
     productionCompanies.textContent = productionCompaniesString;
+    productionCompanies.classList.add("list-group-item");
     singleMovieContent.appendChild(productionCompanies);
 
+    homePage.classList.add("list-group-item");
     if (root.homepage) {
         homePage.href = root.homepage;
         homePage.textContent = "Homepage for " + root.title + " here!";
@@ -157,6 +160,13 @@ function displayMovieSpecs(root) {
     }
     singleMovieContent.appendChild(homePage);
 }
+
+document.querySelector("#backButton")
+    .addEventListener("click", function() {
+        singleMoviePage.classList.add("d-none");
+        pageNav.classList.remove("d-none");
+        searchPage.classList.remove("d-none");
+    });
 
 function makeMovieCards(results) {
     for (let i = 0; i < results.length; i++) {
