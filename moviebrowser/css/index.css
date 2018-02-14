@@ -37,6 +37,10 @@
 
 }
 
+#singleMovieImgLocation {
+    overflow: auto;
+}
+
 .navbar {
     padding-left: 0px;
 }
