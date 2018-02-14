@@ -58,6 +58,7 @@ function handleResponse(response) {
     }
 }
 
+// Creates individual genre buttons
 function createGenreFilter() {
     let filter = document.createElement("a");
     filter.href = "#";
@@ -66,6 +67,7 @@ function createGenreFilter() {
     return filter;
 }
 
+// handles search results via genre selection
 function searchGenre(genre) {
     searchInput.value = "";
     currentPage = 1;
@@ -81,6 +83,7 @@ function searchGenre(genre) {
     }
 }
 
+// Renders all the genre filters for this web application and adds event handlers for each genre button
 function renderGenreFilters(genres) {
     allGenres = createGenreFilter();
     allGenres.classList.add("active");
@@ -103,12 +106,14 @@ function renderGenreFilters(genres) {
     }
 }
 
+// Adds in gridding classes for the movie cards
 function makeMovieGrid(movie) {
     movie.classList.add("col-sm-12");
     movie.classList.add("col-md-6");
     movie.classList.add("col-lg-3");
 }
 
+// Handles going to a more detailed page about one movie as well as going back to the search results
 let singleMovieContent = document.querySelector("#singleMovieContent");
 let movieSpecImg = document.querySelector("#singleMovieImg");
 let movieTitle = document.querySelector("#movieTitle");
@@ -166,10 +171,11 @@ function displayMovieSpecs(root) {
 document.querySelector("#backButton")
     .addEventListener("click", function() {
         singleMoviePage.classList.add("d-none");
-        pageNav.classList.remove("d-none");
-        searchPage.classList.remove("d-none");
+        clearCurrentSearch();
     });
 
+// Creates the movie cards grid for main page and handles events that occur for each
+// movie card
 function makeMovieCards(results) {
     for (let i = 0; i < results.length; i++) {
         let card = document.createElement("div");
@@ -221,6 +227,8 @@ function makeMovieCards(results) {
     }
 }
 
+// Renders the main page for this web app
+// Also handles multiple page results for a particular search
 function renderMovies(root) {
     ERROR_ALERT_DIV.classList.add("d-none");
     currentPageNum.textContent = currentPage;
@@ -231,6 +239,7 @@ function renderMovies(root) {
     makeMovieCards(root.results);
 }
 
+// Retrieves the genres from the movies database to then create buttons for each genre
 function generateGenreFilters() {
     fetch(GET_GENRES)
         .then(handleResponse)
@@ -238,11 +247,16 @@ function generateGenreFilters() {
         .catch(handleError);
 }
 
+// Clears d-none classes from the results page and pageNav
+// Purpose is for allowing users to search via genre or input
+// even when they are on a single movie page
 function clearCurrentSearch() {
     searchPage.classList.remove("d-none");
     pageNav.classList.remove("d-none");
 }
 
+
+// Displays movies whether it is from genre filtering or input search
 function displayMovies(search) {
     fetch(search)
         .then(handleResponse)
@@ -255,6 +269,7 @@ generateGenreFilters();
 currentDisplay = DISCOVER;
 displayMovies(currentDisplay);
 
+// Event listener for navigating to prev pages
 document.querySelector("#prevPage")
     .addEventListener("click", function() {
         if (currentPage >= 2) {
@@ -265,6 +280,7 @@ document.querySelector("#prevPage")
         }
     });
 
+// Event listener for navigating to next page
 document.querySelector("#nextPage")
     .addEventListener("click", function() {
         if (currentPage < maxPage) {
@@ -275,6 +291,7 @@ document.querySelector("#nextPage")
         }
     });
 
+// Event listener for user searches through input
 document.querySelector("#search-form")
     .addEventListener("submit", function(evt) {
         evt.preventDefault();
