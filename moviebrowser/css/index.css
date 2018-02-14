@@ -34,11 +34,15 @@
 }
 
 #singleMovieImg {
-
+    padding-bottom: 10px;
 }
 
 #singleMovieImgLocation {
     overflow: auto;
+}
+
+#singleMovieContent {
+    padding-left: 0px;
 }
 
 .navbar {

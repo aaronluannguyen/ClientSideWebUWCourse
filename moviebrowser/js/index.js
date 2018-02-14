@@ -117,6 +117,7 @@ let overview = document.createElement("li");
 let singleMovieGenres = document.createElement("li");
 let productionCompanies = document.createElement("li");
 let homePage = document.createElement("li");
+let homePageLink = document.createElement("a");
 function displayMovieSpecs(root) {
     if (root.poster_path) {
         movieSpecImg.src = IMG_BASE + root.poster_path;
@@ -152,8 +153,9 @@ function displayMovieSpecs(root) {
 
     homePage.classList.add("list-group-item");
     if (root.homepage) {
-        homePage.href = root.homepage;
-        homePage.textContent = "Homepage for " + root.title + " here!";
+        homePageLink.href = root.homepage;
+        homePageLink.textContent = "Homepage for " + root.title + " here!"
+        homePage.appendChild(homePageLink);
     } else {
         homePage.href = "";
         homePage.textContent = "Home page not found";
