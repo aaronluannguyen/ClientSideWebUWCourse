@@ -34,7 +34,7 @@ let pageNav = document.querySelector(".pagination");
  */
 function handleError(err) {
     console.error(err);
-    ERROR_ALERT_DIV.textContent = "Search Error " + err.message;
+    ERROR_ALERT_DIV.textContent = "Error: " + err.message;
     ERROR_ALERT_DIV.classList.remove("d-none");
 }
 
@@ -111,13 +111,13 @@ function makeMovieGrid(movie) {
 
 let movieImgPlace = document.querySelector("#singleMovieImg");
 let singleMovieContent = document.querySelector("#singleMovieContent");
-let movieSpecImg = document.createElement("img");
-let movieTitle = document.createElement("h2");
-let tagLine = document.createElement("h5");
-let overview = document.createElement("p");
-let singleMovieGenres = document.createElement("p");
-let productionCompanies = document.createElement("p");
-let homePage = document.createElement("a");
+let movieSpecImg = document.querySelector("#singleMovieImg");
+let movieTitle = document.querySelector("#movieTitle");
+let tagLine = document.querySelector("#tagLine");
+let overview = createGenreFilter();
+let singleMovieGenres = createGenreFilter();
+let productionCompanies = createGenreFilter();
+let homePage = createGenreFilter();
 function displayMovieSpecs(root) {
     if (root.poster_path) {
         movieSpecImg.src = IMG_BASE + root.poster_path;
@@ -126,13 +126,10 @@ function displayMovieSpecs(root) {
     } else {
         movieSpecImg.src = "img/imageNA.jpg";
     }
-    movieImgPlace.appendChild(movieSpecImg);
 
     movieTitle.textContent = root.title;
-    singleMovieContent.appendChild(movieTitle);
 
     tagLine.textContent = root.tagline;
-    singleMovieContent.appendChild(tagLine);
 
     overview.textContent = "Overview: " + root.overview;
     singleMovieContent.appendChild(overview);
@@ -153,7 +150,7 @@ function displayMovieSpecs(root) {
 
     if (root.homepage) {
         homePage.href = root.homepage;
-        homePage.textContent = "Home page here";
+        homePage.textContent = "Homepage for " + root.title + " here!";
     } else {
         homePage.href = "";
         homePage.textContent = "Home page not found";
