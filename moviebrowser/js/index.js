@@ -34,7 +34,11 @@ let pageNav = document.querySelector(".pagination");
  */
 function handleError(err) {
     console.error(err);
-    ERROR_ALERT_DIV.textContent = "Error: " + err.message;
+    if (err.message !== "") {
+        ERROR_ALERT_DIV.textContent = err.message;
+    } else {
+        ERROR_ALERT_DIV.textContent = "Unknown Error";
+    }
     ERROR_ALERT_DIV.classList.remove("d-none");
 }
 
@@ -269,27 +273,36 @@ generateGenreFilters();
 currentDisplay = DISCOVER;
 displayMovies(currentDisplay);
 
+let prevPage = document.querySelector("#prevPage");
+let nextPage = document.querySelector("#nextPage");
+if (currentPage === 1) {
+    prevPage.classList.add("disabled");
+} else if (currentPage === maxPage) {
+    nextPage.querySelector("nextPage").classList.add("disabled");
+} else {
+    prevPage.classList.remove("disabled");
+    nextPage.classList.remove("disabled");
+}
+
 // Event listener for navigating to prev pages
-document.querySelector("#prevPage")
-    .addEventListener("click", function() {
-        if (currentPage >= 2) {
-            currentPage--;
-            let newSearch = currentDisplay + "&page=" + currentPage;
-            displayMovies(newSearch);
-            currentPageNum.textContent = currentPage;
-        }
-    });
+prevPage.addEventListener("click", function() {
+    if (currentPage >= 2) {
+        currentPage--;
+        let newSearch = currentDisplay + "&page=" + currentPage;
+        displayMovies(newSearch);
+        currentPageNum.textContent = currentPage;
+    }
+});
 
 // Event listener for navigating to next page
-document.querySelector("#nextPage")
-    .addEventListener("click", function() {
-        if (currentPage < maxPage) {
-            currentPage++;
-            let newSearch = currentDisplay + "&page=" + currentPage;
-            displayMovies(newSearch);
-            currentPageNum.textContent = currentPage;
-        }
-    });
+nextPage.addEventListener("click", function() {
+    if (currentPage < maxPage) {
+        currentPage++;
+        let newSearch = currentDisplay + "&page=" + currentPage;
+        displayMovies(newSearch);
+        currentPageNum.textContent = currentPage;
+    }
+});
 
 // Event listener for user searches through input
 document.querySelector("#search-form")
