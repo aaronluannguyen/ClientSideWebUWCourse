@@ -26,7 +26,8 @@ let searchInput = document.querySelector("input");
 let singleMoviePage = document.querySelector("#singleMoviePage");
 let searchPage = document.querySelector("#results");
 let pageNav = document.querySelector(".pagination");
-
+let prevPage = document.querySelector("#prevPage");
+let nextPage = document.querySelector("#nextPage");
 
 /**
  * Handles errors that occur while fetching
@@ -241,6 +242,16 @@ function renderMovies(root) {
     totalPageNum.textContent = maxPage;
     MOVIE_DISPLAY.textContent = "";
     makeMovieCards(root.results);
+
+    // Handle disabling or enabling or next and prev pagination controls
+    if (currentPage === 1) {
+        prevPage.classList.add("disabled");
+    } else if (currentPage === maxPage) {
+        nextPage.classList.add("disabled");
+    } else {
+        prevPage.classList.remove("disabled");
+        nextPage.classList.remove("disabled");
+    }
 }
 
 // Retrieves the genres from the movies database to then create buttons for each genre
@@ -273,16 +284,6 @@ generateGenreFilters();
 currentDisplay = DISCOVER;
 displayMovies(currentDisplay);
 
-let prevPage = document.querySelector("#prevPage");
-let nextPage = document.querySelector("#nextPage");
-if (currentPage === 1) {
-    prevPage.classList.add("disabled");
-} else if (currentPage === maxPage) {
-    nextPage.querySelector("nextPage").classList.add("disabled");
-} else {
-    prevPage.classList.remove("disabled");
-    nextPage.classList.remove("disabled");
-}
 
 // Event listener for navigating to prev pages
 prevPage.addEventListener("click", function() {
