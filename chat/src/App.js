@@ -9,7 +9,7 @@ import "firebase/database";
 // Import Views
 import SignInView from "./Views/SignIn";
 import SignUpView from "./Views/SignUp";
-import MainView from "./Views/MainView"
+import MainView from "./Views/Main"
 
 class App extends Component {
   render() {
