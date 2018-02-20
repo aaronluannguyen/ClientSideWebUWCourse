@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {ROUTES} from "../constants";
+import "./SignIn.css";
 
 export default class SignInView extends React.Component {
     handleSubmit(evt) {
@@ -11,7 +12,7 @@ export default class SignInView extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="page">
                 <div className="container">
                     <form onSubmit={evt => this.handleSubmit(evt)}>
                         <div className="form-group">

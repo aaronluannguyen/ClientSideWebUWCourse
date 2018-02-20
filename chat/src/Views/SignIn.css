@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+.page {
+    min-height: 100vh;
+    background-color: #263238;
+    display: flex;
+    align-items: center;
+}
+
+.container {
+    max-width: 40vw;
+    background-color: #607D8B;
+}
