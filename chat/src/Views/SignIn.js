@@ -34,10 +34,8 @@ export default class SignInView extends React.Component {
             // .then(this.props.history.push(ROUTES.generalChannel));
     }
 
-    // Might not need this at all
     handleSubmit(evt) {
         evt.preventDefault();
-        // this.props.history.push(ROUTES.generalChannel);
     }
 
     render() {
