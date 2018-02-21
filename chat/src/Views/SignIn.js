@@ -18,6 +18,14 @@ export default class SignInView extends React.Component {
         }
     }
 
+    componentDidMount() {
+
+    }
+
+    componentWillUnmount() {
+
+    }
+
     handleSignIn() {
         this.setState({working: true});
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
@@ -26,9 +34,10 @@ export default class SignInView extends React.Component {
             // .then(this.props.history.push(ROUTES.generalChannel));
     }
 
-
+    // Might not need this at all
     handleSubmit(evt) {
         evt.preventDefault();
+        // this.props.history.push(ROUTES.generalChannel);
     }
 
     render() {
