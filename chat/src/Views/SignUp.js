@@ -52,7 +52,15 @@ export default class SignUpView extends React.Component {
                                    placeholder="Your Display Name"
                                    value={this.state.displayName}
                                    onInput={evt => this.setState({displayName: evt.target.value})}
+                                   required
                             />
+                            {
+                                this.state.displayName === "" ?
+                                    <p className="text-danger">
+                                        Please Choose A Display Name
+                                    </p> :
+                                    undefined
+                            }
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Email Address</label>
@@ -62,6 +70,7 @@ export default class SignUpView extends React.Component {
                                    placeholder="Your Email Address"
                                    value={this.state.email}
                                    onInput={evt => this.setState({email: evt.target.value})}
+                                   required
                             />
                         </div>
                         <div className="form-group">
@@ -72,6 +81,7 @@ export default class SignUpView extends React.Component {
                                    placeholder="Your Password"
                                    value={this.state.password}
                                    onInput={evt => this.setState({password: evt.target.value})}
+                                   required
                             />
                         </div>
                         <div className="form-group">
@@ -82,6 +92,7 @@ export default class SignUpView extends React.Component {
                                    placeholder="Confirm Your Password"
                                    value={this.state.passwordConfirm}
                                    onInput={evt => this.setState({passwordConfirm: evt.target.value})}
+                                   required
                             />
                         </div>
                         <div className="form-group">
