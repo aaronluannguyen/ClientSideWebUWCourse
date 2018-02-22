@@ -29,6 +29,9 @@ export default class SignInView extends React.Component {
     handleSignIn() {
         this.setState({working: true});
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then(user => {
+                this.props.history.push(ROUTES.generalChannel)
+            })
             .catch(err => this.setState({fberror: err}))
             .then(() => this.setState({working: false}))
             // .then(this.props.history.push(ROUTES.generalChannel));
