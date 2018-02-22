@@ -11,6 +11,7 @@ export default class SignUpView extends React.Component {
         super(props);
 
         this.state = {
+            currentUser: undefined,
             displayName: undefined,
             email: undefined,
             password: undefined,
@@ -19,11 +20,11 @@ export default class SignUpView extends React.Component {
     }
 
     componentDidMount() {
-
+        this.authUnlisten = firebase.auth().onAuthStateChanged(user => this.setState({currentUser: user}));
     }
 
-    componentWillUnMount() {
-
+    componentWillUnmount() {
+        this.authUnlisten();
     }
 
     handleSignUp() {

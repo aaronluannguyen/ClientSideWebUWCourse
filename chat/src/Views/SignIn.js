@@ -19,11 +19,11 @@ export default class SignInView extends React.Component {
     }
 
     componentDidMount() {
-
+        this.authUnlisten = firebase.auth().onAuthStateChanged(user => this.setState({currentUser: user}));
     }
 
     componentWillUnmount() {
-
+        this.authUnlisten();
     }
 
     handleSignIn() {
@@ -34,7 +34,6 @@ export default class SignInView extends React.Component {
             })
             .catch(err => this.setState({fberror: err}))
             .then(() => this.setState({working: false}))
-            // .then(this.props.history.push(ROUTES.generalChannel));
     }
 
     handleSubmit(evt) {
