@@ -3,6 +3,15 @@ import {Link} from "react-router-dom";
 import {ROUTES} from "../constants";
 
 export default class mainView extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentChannel: this.props.match.params.channelName,
+            channelMessageRef: undefined,
+            channelMessageSnap: undefined
+        }
+    }
+
     componentDidMount() {
         console.log("Main view did mount")
     }
@@ -40,7 +49,7 @@ export default class mainView extends React.Component {
                     <ul>
                         <li>
                             {
-                                this.props.match.params.channelName !== "general" ? <Link to={ROUTES.generalChannel}>general</Link> : "general"
+                                this.props.match.params.channelName !== "general" ? <Link to={ROUTES.generalChannel}>General</Link> : "General"
                             }
                         </li>
                         <li><Link to={ROUTES.randomChannel}>Random</Link></li>
