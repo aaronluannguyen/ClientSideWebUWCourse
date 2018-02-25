@@ -4,13 +4,15 @@ export default class NewMessage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            author: {
-                displayName: undefined,
-                photoURL: undefined,
-                uid: undefined
-            },
-            body: undefined,
-            createdAt: undefined
+            messageObj: {
+                author: {
+                    displayName: undefined,
+                    photoURL: undefined,
+                    uid: undefined
+                },
+                body: undefined,
+                createdAt: undefined
+            }
         }
     }
 
@@ -22,7 +24,7 @@ export default class NewMessage extends React.Component {
         };
 
         this.props.channelMessageRef.push(messageObj)
-            .then(() => this.setState)
+            .then(() => this.setState({messageObj: messageObj, fbError: undefined}))
             .catch(err => this.setState({fbError: err}));
     }
 
