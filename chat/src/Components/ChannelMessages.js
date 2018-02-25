@@ -11,5 +11,9 @@ export default class ChannelMessages extends React.Component {
         this.props.channelMessageSnap.forEach(messagesSnap => {
             messages.push(<Message key={messagesSnap.key} messageSnap={messagesSnap}/>)
         });
+
+        return (
+            {messages}
+        )
     }
 }

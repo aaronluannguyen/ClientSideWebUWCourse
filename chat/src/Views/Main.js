@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {ROUTES} from "../constants";
+import ChannelMessages from "../Components/ChannelMessages";
+import NewMessage from "../Components/NewMessage";
 
 export default class mainView extends React.Component {
     constructor(props) {
@@ -54,6 +56,12 @@ export default class mainView extends React.Component {
                         </li>
                         <li><Link to={ROUTES.randomChannel}>Random</Link></li>
                     </ul>
+                    <div>
+                        <ChannelMessages channelMessageSnap={this.state.channelMessageSnap}/>
+                    </div>
+                    <div>
+                        <NewMessage channelMessageRef={this.state.channelMessageRef}/>
+                    </div>
                 </main>
             </div>
         );
