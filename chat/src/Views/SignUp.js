@@ -5,6 +5,7 @@ import "./SignUp.css";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
+import md5 from "blueimp-md5";
 
 export default class SignUpView extends React.Component {
     constructor(props) {
@@ -32,12 +33,11 @@ export default class SignUpView extends React.Component {
         let userInfo = {
             displayName: this.state.displayName,
             userUid: user.uid,
-            photoUrl: md5(this.state.email.toLowerCase().trim())
+            photoUrl: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
         };
         let ref = firebase.database().ref(`users`);
         this.valueListener = ref.on("value", snapshot => {
             ref.push(userInfo)
-                .then(() => this.setState({fbError:undefined}))
                 .catch(err => this.setState({fbError: err}));
         })
     }
@@ -46,10 +46,8 @@ export default class SignUpView extends React.Component {
         if (this.passwordMatch()) {
             this.setState({working: true});
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-                .then(user => {
-                    this.inputUser(user);
-                    this.props.history.push(ROUTES.generalChannel);
-                })
+                .then(user => this.inputUser(user))
+                .then(this.props.history.push(ROUTES.generalChannel))
                 .catch(err => this.setState({fberror: err}))
                 .then(() => this.setState({working: false}));
         }
