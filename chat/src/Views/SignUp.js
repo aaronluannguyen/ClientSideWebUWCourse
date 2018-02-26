@@ -39,15 +39,18 @@ export default class SignUpView extends React.Component {
         this.valueListener = ref.on("value", snapshot => {
             ref.push(userInfo)
                 .catch(err => this.setState({fbError: err}));
-        })
+        });
+        //ref.off("value", this.valueListener);
     }
 
     handleSignUp() {
         if (this.passwordMatch()) {
             this.setState({working: true});
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-                .then(user => this.inputUser(user))
-                .then(this.props.history.push(ROUTES.generalChannel))
+                .then(user => {
+                    this.inputUser(user);
+                    this.props.history.push(ROUTES.generalChannel);
+                })
                 .catch(err => this.setState({fberror: err}))
                 .then(() => this.setState({working: false}));
         }
