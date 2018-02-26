@@ -22,14 +22,16 @@ export default class mainView extends React.Component {
     componentDidMount() {
         this.unListenAuth = firebase.auth().onAuthStateChanged(user => {
             if (user) {
-                let ref = firebase.database().ref('messages/' + this.state.currentChannel);
+                let ref = firebase.database().ref(`messages/${this.state.currentChannel}`);
                 this.valueListener = ref.on("value", snapshot => this.setState({channelMessageSnap: snapshot}));
+                this.setState({channelMessageRef: ref});
             }
         });
     }
 
     componentWillUnmount() {
         this.unListenAuth();
+        this.state.channelMessageRef.off("value", this.valueListener);
     }
 
     render() {
