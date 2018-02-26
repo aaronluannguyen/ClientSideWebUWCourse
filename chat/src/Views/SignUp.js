@@ -17,6 +17,8 @@ export default class SignUpView extends React.Component {
             email: "",
             password: "",
             passwordConfirm: "",
+            userID: undefined,
+            userRef: undefined,
             passwordMatch: undefined
         }
     }
@@ -29,17 +31,16 @@ export default class SignUpView extends React.Component {
         this.authUnlisten();
     }
 
-    inputUser(user) {
+    inputUser() {
         let userInfo = {
             displayName: this.state.displayName,
-            userUid: user.uid,
+            userUid: this.state.userID,
             photoUrl: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
         };
         let ref = firebase.database().ref(`users`);
-        this.valueListener = ref.on("value", snapshot => {
-            ref.push(userInfo)
-                .catch(err => this.setState({fbError: err}));
-        });
+        this.valueListener = ref.on("value", snapshot => this.setState({userSnap: snapshot}));
+        ref.push(userInfo)
+            .catch(err => this.setState({fbError: err}));
         //ref.off("value", this.valueListener);
     }
 
@@ -48,7 +49,8 @@ export default class SignUpView extends React.Component {
             this.setState({working: true});
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(user => {
-                    this.inputUser(user);
+                    this.setState({userID: user.uid});
+                    this.inputUser();
                     this.props.history.push(ROUTES.generalChannel);
                 })
                 .catch(err => this.setState({fberror: err}))
