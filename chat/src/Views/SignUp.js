@@ -15,7 +15,8 @@ export default class SignUpView extends React.Component {
             displayName: "",
             email: "",
             password: "",
-            passwordConfirm: ""
+            passwordConfirm: "",
+            passwordMatch: undefined
         }
     }
 
@@ -28,18 +29,31 @@ export default class SignUpView extends React.Component {
     }
 
     handleSignUp() {
-        this.setState({working: true});
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(user => {
-                this.props.history.push(ROUTES.generalChannel);
-            })
-            .catch(err => this.setState({fberror: err}))
-            .then(() => this.setState({working: false}));
+        if (this.passwordMatch()) {
+            this.setState({working: true});
+            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+                .then(user => {
+                    this.props.history.push(ROUTES.generalChannel);
+                })
+                .catch(err => this.setState({fberror: err}))
+                .then(() => this.setState({working: false}));
+        }
     }
 
     handleSubmit(evt) {
         evt.preventDefault();
     }
+
+    passwordMatch() {
+        if (this.state.password === this.state.passwordConfirm) {
+            this.setState({passwordMatch: true});
+            return true;
+        } else {
+            this.setState({passwordMatch: false});
+            return false;
+        }
+    }
+
 
     render() {
         return (
@@ -92,6 +106,13 @@ export default class SignUpView extends React.Component {
                                    onInput={evt => this.setState({password: evt.target.value})}
                                    required
                             />
+                            {
+                                this.state.passwordMatch === false ?
+                                    <div>
+                                        Passwords do not match
+                                    </div> :
+                                    undefined
+                            }
                         </div>
                         <div className="form-group">
                             <label htmlFor="confirmPassword">Confirm Password</label>
@@ -103,6 +124,13 @@ export default class SignUpView extends React.Component {
                                    onInput={evt => this.setState({passwordConfirm: evt.target.value})}
                                    required
                             />
+                            {
+                                this.state.passwordMatch === false ?
+                                    <div>
+                                        Passwords do not match
+                                    </div> :
+                                    undefined
+                            }
                         </div>
                         <div className="form-group">
                             <button type="submit" className="btn btn-primary" onClick={() => this.handleSignUp()}>Sign Up</button>
