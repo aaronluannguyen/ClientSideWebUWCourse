@@ -64,11 +64,13 @@ export default class mainView extends React.Component {
                         </li>
                         <li><Link to={ROUTES.randomChannel}>Random</Link></li>
                     </ul>
-                    <div>
-                        <ChannelMessages channelMessageSnap={this.state.channelMessageSnap}/>
-                    </div>
-                    <div>
-                        <NewMessage channelMessageRef={this.state.channelMessageRef}/>
+                    <div className="container">
+                        <div>
+                            <ChannelMessages channelMessageSnap={this.state.channelMessageSnap}/>
+                        </div>
+                        <div>
+                            <NewMessage channelMessageRef={this.state.channelMessageRef}/>
+                        </div>
                     </div>
                 </main>
             </div>

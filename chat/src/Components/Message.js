@@ -5,7 +5,7 @@ export default class Message extends React.Component {
         let message = this.props.messageSnap.val();
 
         return (
-            <div>
+            <div className="container">
                 {message.author.displayName}
                 {message.author.photoURL}
                 {message.author.uid}
