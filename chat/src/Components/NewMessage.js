@@ -1,26 +1,29 @@
 import React from "react";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
 
 export default class NewMessage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            messageObj: {
-                author: {
-                    displayName: undefined,
-                    photoURL: "Photo here",
-                    uid: undefined
-                },
-                body: undefined,
-                createdAt: undefined
-            }
+            body: undefined
         }
     }
 
     handleSubmit(evt) {
         evt.preventDefault();
-        let messageContent = this.state.messageObj;
-        this.props.channelMessageRef.push(messageContent)
-            .then(() => this.setState({messageObj: messageContent, fbError: undefined}))
+        let messageObj = {
+            author: {
+                displayName: undefined,
+                photoURL: "Photo here",
+                uid: undefined
+            },
+            body: this.state.body,
+            createdAt: firebase.database.ServerValue.TIMESTAMP
+        };
+        this.props.channelMessageRef.push(messageObj)
+            .then(() => this.setState({body: "", fbError: undefined}))
             .catch(err => this.setState({fbError: err}));
     }
 
