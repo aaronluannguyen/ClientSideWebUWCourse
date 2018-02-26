@@ -1,5 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
 import {ROUTES} from "../constants";
 import ChannelMessages from "../Components/ChannelMessages";
 import NewMessage from "../Components/NewMessage";
@@ -8,6 +11,8 @@ export default class mainView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentUserName: undefined,
+            currentUserUid: undefined,
             currentChannel: this.props.match.params.channelName,
             channelMessageRef: undefined,
             channelMessageSnap: undefined
@@ -15,15 +20,16 @@ export default class mainView extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Main view did mount")
+        this.unListenAuth = firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                let ref = firebase.database().ref('messages/' + this.state.currentChannel);
+                this.valueListener = ref.on("value", snapshot => this.setState({channelMessageSnap: snapshot}));
+            }
+        });
     }
 
     componentWillUnmount() {
-        console.log("Main view will unmount");
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log("Switching from %s channel to %s channel", this.props.match.params.channelName, nextProps.match.params.channelName);
+        this.unListenAuth();
     }
 
     render() {

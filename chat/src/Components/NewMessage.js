@@ -7,7 +7,7 @@ export default class NewMessage extends React.Component {
             messageObj: {
                 author: {
                     displayName: undefined,
-                    photoURL: undefined,
+                    photoURL: "Photo here",
                     uid: undefined
                 },
                 body: undefined,
@@ -18,13 +18,9 @@ export default class NewMessage extends React.Component {
 
     handleSubmit(evt) {
         evt.preventDefault();
-
-        let messageObj = {
-
-        };
-
-        this.props.channelMessageRef.push(messageObj)
-            .then(() => this.setState({messageObj: messageObj, fbError: undefined}))
+        let messageContent = this.state.messageObj;
+        this.props.channelMessageRef.push(messageContent)
+            .then(() => this.setState({messageObj: messageContent, fbError: undefined}))
             .catch(err => this.setState({fbError: err}));
     }
 

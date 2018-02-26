@@ -13,7 +13,9 @@ export default class ChannelMessages extends React.Component {
         });
 
         return (
-            {messages}
+            <div>
+                {messages}
+            </div>
         )
     }
 }

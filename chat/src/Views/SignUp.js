@@ -12,10 +12,10 @@ export default class SignUpView extends React.Component {
 
         this.state = {
             currentUser: undefined,
-            displayName: undefined,
-            email: undefined,
-            password: undefined,
-            passwordConfirm: undefined
+            displayName: "",
+            email: "",
+            password: "",
+            passwordConfirm: ""
         }
     }
 

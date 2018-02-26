@@ -12,8 +12,8 @@ export default class SignInView extends React.Component {
 
         this.state = {
             currentUser: undefined,
-            email: undefined,
-            password: undefined,
+            email: "",
+            password: "",
             displayName: undefined
         }
     }
