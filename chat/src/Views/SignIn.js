@@ -42,8 +42,8 @@ export default class SignInView extends React.Component {
 
     render() {
         return(
-            <div className="page">
-                <div className="container">
+            <div className="sign-in-page">
+                <div className="container" id="sign-in-container">
                     {
                         this.state.fberror ?
                             <div className="alert alert-danger">
