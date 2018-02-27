@@ -15,9 +15,9 @@ export default class NewMessage extends React.Component {
         evt.preventDefault();
         let messageObj = {
             author: {
-                displayName: "Test Name",
-                photoURL: "Photo here",
-                uid: "Test UID"
+                displayName: this.props.userInfo.displayName,
+                photoURL: this.props.userInfo.photoUrl,
+                uid: this.props.userInfo.userID
             },
             body: this.state.body,
             createdAt: firebase.database.ServerValue.TIMESTAMP

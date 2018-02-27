@@ -17,7 +17,6 @@ export default class SignUpView extends React.Component {
             email: "",
             password: "",
             passwordConfirm: "",
-            userID: undefined,
             passwordMatch: undefined
         }
     }
@@ -33,13 +32,13 @@ export default class SignUpView extends React.Component {
     inputUser() {
         let userInfo = {
             displayName: this.state.displayName,
-            userUid: this.state.userID,
+            //userUid: this.state.userID,
             photoUrl: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
         };
         let ref = firebase.database().ref(`users`);
         this.valueListener = ref.on("value", snapshot => this.setState({userSnap: snapshot}));
         ref.push(userInfo)
-            .catch(err => this.setState({fbError: err}))
+            .catch(err => this.setState({fberror: err}))
             .then(ref.off("value", this.valueListener));
     }
 
@@ -48,8 +47,10 @@ export default class SignUpView extends React.Component {
             this.setState({working: true});
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(user => {
-                    this.setState({userID: user.uid});
-                    this.inputUser();
+                    user.updateProfile({
+                        displayName: this.state.displayName,
+                        photoURL: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
+                    });
                     this.props.history.push(ROUTES.generalChannel);
                 })
                 .catch(err => this.setState({fberror: err}))

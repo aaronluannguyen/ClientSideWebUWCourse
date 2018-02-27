@@ -12,8 +12,7 @@ export default class mainView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentUserName: undefined,
-            currentUserUid: undefined,
+            currentUser: firebase.auth().currentUser,
             currentChannel: this.props.match.params.channelName,
             channelMessageRef: undefined,
             channelMessageSnap: undefined
@@ -23,6 +22,15 @@ export default class mainView extends React.Component {
     componentDidMount() {
         this.unListenAuth = firebase.auth().onAuthStateChanged(user => {
             if (user) {
+                user.providerData.forEach(profile => {
+                    this.setState({
+                        userInfo: {
+                            userID: profile.uid,
+                            displayName: profile.displayName,
+                            photoUrl: profile.photoURL
+                        }
+                    });
+                });
                 let ref = firebase.database().ref(`messages/${this.state.currentChannel}`);
                 this.valueListener = ref.on("value", snapshot => this.setState({channelMessageSnap: snapshot}));
                 this.setState({channelMessageRef: ref});
@@ -74,7 +82,7 @@ export default class mainView extends React.Component {
                                     <ChannelMessages channelMessageSnap={this.state.channelMessageSnap}/>
                                 </div>
                                 <div>
-                                    <NewMessage channelMessageRef={this.state.channelMessageRef}/>
+                                    <NewMessage channelMessageRef={this.state.channelMessageRef} userInfo={this.state.userInfo}/>
                                 </div>
                             </div>
                         </div>
