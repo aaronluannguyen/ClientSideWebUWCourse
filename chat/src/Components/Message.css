@@ -2,14 +2,18 @@
     box-sizing: border-box;
 }
 
-.container {
+#messageBox {
     display: flex;
+    flex-direction: row;
+    padding: 10px 5px;
 }
 
 .imgContainer {
-    flex: 1 0 10%;
+    flex: 0 0 5%;
+    padding-right: 10px;
 }
 
 .wordContent {
-    flex: 1 0 90%;
+    flex: 10 0 auto;
 }
+

@@ -13,15 +13,13 @@ export default class Message extends React.Component {
         let message = this.props.messageSnap.val();
 
         return (
-            <div className="container">
+            <div className="container" id="messageBox">
                 <div className="imgContainer">
-                    <div className="col-1">
-                        <img src={message.author.photoURL} alt="profile picture"/>
-                    </div>
-                    <div className="wordContent">
-                        <p>{message.author.displayName} ------ <span id="timestamp">Posted at: {message.createdAt}</span></p>
-                        <p>{message.body}</p>
-                    </div>
+                    <img src={message.author.photoURL} alt="profile picture"/>
+                </div>
+                <div className="wordContent">
+                    <p>{message.author.displayName} ------ <span id="timestamp">Posted at: {message.createdAt}</span></p>
+                    <p>{message.body}</p>
                 </div>
             </div>
         );
