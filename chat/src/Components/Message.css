@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+}
+
+.imgContainer {
+    flex: 1 0 10%;
+}
+
+.wordContent {
+    flex: 1 0 90%;
+}
