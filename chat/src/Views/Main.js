@@ -6,6 +6,7 @@ import "firebase/database";
 import {ROUTES} from "../constants";
 import ChannelMessages from "../Components/ChannelMessages";
 import NewMessage from "../Components/NewMessage";
+import "./Main.css";
 
 export default class mainView extends React.Component {
     constructor(props) {
@@ -56,20 +57,26 @@ export default class mainView extends React.Component {
                     </div>
                 </header>
                 <main>
-                    <ul>
-                        <li>
-                            {
-                                this.props.match.params.channelName !== "general" ? <Link to={ROUTES.generalChannel}>General</Link> : "General"
-                            }
-                        </li>
-                        <li><Link to={ROUTES.randomChannel}>Random</Link></li>
-                    </ul>
                     <div className="container">
-                        <div>
-                            <ChannelMessages channelMessageSnap={this.state.channelMessageSnap}/>
-                        </div>
-                        <div>
-                            <NewMessage channelMessageRef={this.state.channelMessageRef}/>
+                        <div className="row">
+                            <div className="col-1">
+                                <ul>
+                                    <li>
+                                        {
+                                            this.props.match.params.channelName !== "general" ? <Link to={ROUTES.generalChannel}>General</Link> : "General"
+                                        }
+                                    </li>
+                                    <li><Link to={ROUTES.randomChannel}>Random</Link></li>
+                                </ul>
+                            </div>
+                            <div className="col-11">
+                                <div>
+                                    <ChannelMessages channelMessageSnap={this.state.channelMessageSnap}/>
+                                </div>
+                                <div>
+                                    <NewMessage channelMessageRef={this.state.channelMessageRef}/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </main>
