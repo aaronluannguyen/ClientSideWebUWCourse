@@ -37,13 +37,12 @@ export default class NewMessage extends React.Component {
                         </div> :
                         undefined
                 }
-                <div className="form-group">
-                    <textarea className="form-control" rows="2"
-                              value={this.state.body}
-                              onInput={evt => this.setState({body: evt.target.value})}
-                              placeholder="Type your message...">
-                    </textarea>
-                </div>
+                <input type="text" id="text-input-bar"
+                    className="form-control"
+                       value={this.state.body}
+                       onInput={evt => this.setState({body: evt.target.value})}
+                       placeholder="Type your message..."
+                />
             </form>
         );
     }

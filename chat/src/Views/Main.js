@@ -45,8 +45,8 @@ export default class mainView extends React.Component {
 
     render() {
         return (
-            <div>
-                <header className="bg-secondary text-white">
+            <div id="page">
+                <header className="bg-secondary text-white" id="header">
                     <div className="container-fluid">
                         <div className="row align-items-center">
                             <div className="col">
@@ -65,7 +65,7 @@ export default class mainView extends React.Component {
                     </div>
                 </header>
                 <main>
-                    <div className="container-fluid">
+                    <div className="container" id="main-view">
                         <div className="row">
                             <div className="col-1">
                                 <ul>
@@ -82,7 +82,7 @@ export default class mainView extends React.Component {
                                     <ChannelMessages channelMessageSnap={this.state.channelMessageSnap}/>
                                 </div>
                                 <div>
-                                    <NewMessage channelMessageRef={this.state.channelMessageRef} userInfo={this.state.userInfo}/>
+                                    <NewMessage id="text-input" channelMessageRef={this.state.channelMessageRef} userInfo={this.state.userInfo}/>
                                 </div>
                             </div>
                         </div>

@@ -5,10 +5,6 @@ import "firebase/database";
 import "./Message.css";
 
 export default class Message extends React.Component {
-    getTimeStamp(stamp) {
-        firebase.ref
-    }
-
     render() {
         let message = this.props.messageSnap.val();
 
