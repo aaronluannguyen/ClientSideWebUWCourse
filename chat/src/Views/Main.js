@@ -65,7 +65,7 @@ export default class mainView extends React.Component {
                     </div>
                 </header>
                 <main>
-                    <div className="container">
+                    <div className="container-fluid">
                         <div className="row">
                             <div className="col-1">
                                 <ul>
