@@ -18,7 +18,6 @@ export default class SignUpView extends React.Component {
             password: "",
             passwordConfirm: "",
             userID: undefined,
-            userRef: undefined,
             passwordMatch: undefined
         }
     }
@@ -40,8 +39,8 @@ export default class SignUpView extends React.Component {
         let ref = firebase.database().ref(`users`);
         this.valueListener = ref.on("value", snapshot => this.setState({userSnap: snapshot}));
         ref.push(userInfo)
-            .catch(err => this.setState({fbError: err}));
-        //ref.off("value", this.valueListener);
+            .catch(err => this.setState({fbError: err}))
+            .then(ref.off("value", this.valueListener));
     }
 
     handleSignUp() {
