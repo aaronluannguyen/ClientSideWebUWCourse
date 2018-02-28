@@ -18,3 +18,8 @@
     flex: 10 0 auto;
 }
 
+.btn-danger,
+.btn-warning {
+    margin: 0px 5px;
+}
+

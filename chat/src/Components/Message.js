@@ -36,8 +36,8 @@ export default class Message extends React.Component {
                         {
                             this.props.userInfo.userID === this.state.message.author.uid ?
                                 <span>
-                                    <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-link">Edit</button>
-                                    <button type="button" onClick={() => this.handleDelete()} className="btn btn-link">Delete</button>
+                                    <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-warning">Edit</button>
+                                    <button type="button" onClick={() => this.handleDelete()} className="btn btn-danger">Delete</button>
                                 </span>
                                 : undefined
                         }
