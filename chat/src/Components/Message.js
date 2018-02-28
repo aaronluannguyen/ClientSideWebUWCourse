@@ -8,11 +8,13 @@ export default class Message extends React.Component {
     constructor(props) {
         super(props);
         this.state =  {
-            message: this.props.messageSnap.val()
+            message: this.props.messageSnap.val(),
+            edit: false
         }
     }
 
-    handleEdit() {
+    handleEdit(evt) {
+        evt.preventDefault();
 
     }
 
@@ -28,11 +30,29 @@ export default class Message extends React.Component {
                 </div>
                 <div className="wordContent">
                     <p>{this.state.message.author.displayName} ------ <span id="timestamp">Posted at: {Date(this.state.message.createdAt)}</span></p>
-                    <p>{this.state.message.body}</p>
+                    {
+                        this.state.edit === true ?
+                            <form onSubmit={evt => this.handleEdit(evt)}>
+                                {
+                                    this.state.fbError ?
+                                        <div className="alert alert-danger">
+                                            {this.state.fbError.message}
+                                        </div> :
+                                        undefined
+                                }
+                                <input type="text" id="text-input-bar"
+                                       className="form-control"
+                                       value={this.state.content}
+                                       onInput={evt => this.setState({content: evt.target.value})}
+                                       placeholder={this.state.message.body}
+                                />
+                            </form> :
+                            <p>{this.state.message.body}</p>
+                    }
                     {
                         this.props.userInfo.userID === this.state.message.author.uid ?
                             <p>
-                                <button type="button" className="btn btn-link">Edit</button>
+                                <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-link">Edit</button>
                                 <button type="button" className="btn btn-link">Delete</button>
                             </p> :
                             undefined
