@@ -57,10 +57,16 @@ export default class mainView extends React.Component {
                                 <ul>
                                     <li>
                                         {
-                                            this.props.match.params.channelName !== "general" ? <Link to={ROUTES.generalChannel}>General</Link> : "General"
+                                            this.props.match.params.channelName !== "general" ?
+                                                <Link to={ROUTES.generalChannel}>General</Link> : "General"
                                         }
                                     </li>
-                                    <li><Link to={ROUTES.randomChannel}>Random</Link></li>
+                                    <li>
+                                        {
+                                            this.props.match.params.channelName !== "random" ?
+                                                <Link to={ROUTES.randomChannel}>Random</Link> : "Random"
+                                        }
+                                    </li>
                                 </ul>
                             </div>
                             <div className="col-11">
