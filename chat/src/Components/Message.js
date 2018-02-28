@@ -14,7 +14,7 @@ export default class Message extends React.Component {
                     <img src={message.author.photoURL} alt="profile picture"/>
                 </div>
                 <div className="wordContent">
-                    <p>{message.author.displayName} ------ <span id="timestamp">Posted at: {message.createdAt}</span></p>
+                    <p>{message.author.displayName} ------ <span id="timestamp">Posted at: {Date(message.createdAt)}</span></p>
                     <p>{message.body}</p>
                 </div>
             </div>
