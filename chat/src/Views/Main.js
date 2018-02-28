@@ -33,13 +33,17 @@ export default class mainView extends React.Component {
                 let ref = firebase.database().ref(`messages/${this.state.currentChannel}`);
                 this.valueListener = ref.on("value", snapshot => this.setState({channelMessageSnap: snapshot}));
                 this.setState({channelMessageRef: ref});
+            } else {
+                this.props.history.push(ROUTES.signIn);
             }
         });
     }
 
     componentWillUnmount() {
         this.unListenAuth();
-        this.state.channelMessageRef.off("value", this.valueListener);
+        if (this.state.channelMessageRef) {
+            this.state.channelMessageRef.off("value", this.valueListener);
+        }
     }
 
     handleSignOut() {
