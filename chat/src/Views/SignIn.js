@@ -19,7 +19,12 @@ export default class SignInView extends React.Component {
     }
 
     componentDidMount() {
-        this.authUnlisten = firebase.auth().onAuthStateChanged(user => this.setState({currentUser: user}));
+        this.authUnlisten = firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.props.history.push(ROUTES.generalChannel);
+            }
+            this.setState({currentUser: user});
+        });
     }
 
     componentWillUnmount() {
