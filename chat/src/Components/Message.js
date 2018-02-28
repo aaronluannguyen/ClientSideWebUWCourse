@@ -9,17 +9,20 @@ export default class Message extends React.Component {
         super(props);
         this.state =  {
             message: this.props.messageSnap.val(),
+            content: this.props.messageSnap.val().body,
             edit: false
         }
     }
 
     handleEdit(evt) {
         evt.preventDefault();
-
+        this.state.message.body = this.state.content;
+        this.props.messageSnap.ref.update({body: this.state.content});
+        this.setState({edit: false})
     }
 
     handleDelete() {
-
+        this.props.messageSnap.ref.remove();
     }
 
     render() {
@@ -53,7 +56,7 @@ export default class Message extends React.Component {
                         this.props.userInfo.userID === this.state.message.author.uid ?
                             <p>
                                 <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-link">Edit</button>
-                                <button type="button" className="btn btn-link">Delete</button>
+                                <button type="button" onClick={() => this.handleDelete()} className="btn btn-link">Delete</button>
                             </p> :
                             undefined
                     }
