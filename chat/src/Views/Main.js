@@ -82,7 +82,7 @@ export default class mainView extends React.Component {
                                             </div>
                                             <div className="col-auto">
                                                 <div id="sign-out" onClick={() => this.handleSignOut()}>
-                                                    <button type="button" onClick={() => this.handleSignOut()} class="btn btn-danger">Sign Out</button>
+                                                    <button type="button" onClick={() => this.handleSignOut()} className="btn btn-danger">Sign Out</button>
                                                 </div>
                                             </div>
                                         </div>
