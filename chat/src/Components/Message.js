@@ -32,7 +32,16 @@ export default class Message extends React.Component {
                     <img src={this.state.message.author.photoURL} alt="profile picture"/>
                 </div>
                 <div className="wordContent">
-                    <p>{this.state.message.author.displayName} ------ <span id="timestamp">Posted at: {Date(this.state.message.createdAt)}</span></p>
+                    <p>{this.state.message.author.displayName} ------ <span id="timestamp">Posted at: {Date(this.state.message.createdAt)} ------
+                        {
+                            this.props.userInfo.userID === this.state.message.author.uid ?
+                                <span>
+                                    <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-link">Edit</button>
+                                    <button type="button" onClick={() => this.handleDelete()} className="btn btn-link">Delete</button>
+                                </span>
+                                : undefined
+                        }
+                    </span></p>
                     {
                         this.state.edit === true ?
                             <form onSubmit={evt => this.handleEdit(evt)}>
@@ -51,14 +60,6 @@ export default class Message extends React.Component {
                                 />
                             </form> :
                             <p>{this.state.message.body}</p>
-                    }
-                    {
-                        this.props.userInfo.userID === this.state.message.author.uid ?
-                            <p>
-                                <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-link">Edit</button>
-                                <button type="button" onClick={() => this.handleDelete()} className="btn btn-link">Delete</button>
-                            </p> :
-                            undefined
                     }
                 </div>
             </div>
