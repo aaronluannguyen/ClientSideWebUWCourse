@@ -13,18 +13,20 @@ export default class NewMessage extends React.Component {
 
     handleSubmit(evt) {
         evt.preventDefault();
-        let messageObj = {
-            author: {
-                displayName: this.props.userInfo.displayName,
-                photoURL: this.props.userInfo.photoUrl,
-                uid: this.props.userInfo.userID
-            },
-            body: this.state.body,
-            createdAt: firebase.database.ServerValue.TIMESTAMP
-        };
-        this.props.channelMessageRef.push(messageObj)
-            .then(() => this.setState({body: "", fbError: undefined}))
-            .catch(err => this.setState({fbError: err}));
+        if (this.state.body !== "") {
+            let messageObj = {
+                author: {
+                    displayName: this.props.userInfo.displayName,
+                    photoURL: this.props.userInfo.photoUrl,
+                    uid: this.props.userInfo.userID
+                },
+                body: this.state.body,
+                createdAt: firebase.database.ServerValue.TIMESTAMP
+            };
+            this.props.channelMessageRef.push(messageObj)
+                .then(() => this.setState({body: "", fbError: undefined}))
+                .catch(err => this.setState({fbError: err}));
+        }
     }
 
     render() {
