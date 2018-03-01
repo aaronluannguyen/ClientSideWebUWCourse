@@ -15,7 +15,9 @@ export default class Message extends React.Component {
     }
 
     handleEdit(evt) {
-        evt.preventDefault();
+        if (evt) {
+            evt.preventDefault();
+        }
         this.state.message.body = this.state.content;
         this.props.messageSnap.ref.update({body: this.state.content});
         this.setState({edit: false})
@@ -35,10 +37,15 @@ export default class Message extends React.Component {
                     <p>{this.state.message.author.displayName} ------ <span id="timestamp">Posted at: {Date(this.state.message.createdAt)} ------
                         {
                             this.props.userInfo.userID === this.state.message.author.uid ?
-                                <span>
-                                    <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-warning">Edit</button>
-                                    <button type="button" onClick={() => this.handleDelete()} className="btn btn-danger">Delete</button>
-                                </span>
+                                !this.state.edit ?
+                                    <span>
+                                        <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-warning">Edit</button>
+                                        <button type="button" onClick={() => this.handleDelete()} className="btn btn-danger">Delete</button>
+                                    </span> :
+                                    <span>
+                                        <button type="button" onClick={() => this.handleEdit()} className="btn btn-success">Update</button>
+                                        <button type="button" onClick={() => this.setState({edit: false})} className="btn btn-danger">Cancel</button>
+                                    </span>
                                 : undefined
                         }
                     </span></p>
