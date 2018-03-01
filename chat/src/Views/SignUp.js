@@ -30,19 +30,6 @@ export default class SignUpView extends React.Component {
         this.authUnlisten();
     }
 
-    inputUser() {
-        let userInfo = {
-            displayName: this.state.displayName,
-            //userUid: this.state.userID,
-            photoUrl: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
-        };
-        let ref = firebase.database().ref(`users`);
-        this.valueListener = ref.on("value", snapshot => this.setState({userSnap: snapshot}));
-        ref.push(userInfo)
-            .catch(err => this.setState({fberror: err}))
-            .then(ref.off("value", this.valueListener));
-    }
-
     handleSignUp(evt) {
         if (evt) {
             evt.preventDefault();
@@ -55,20 +42,10 @@ export default class SignUpView extends React.Component {
                         displayName: this.state.displayName,
                         photoURL: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
                     });
+                    this.setState({working: false});
                     this.props.history.push(ROUTES.generalChannel);
                 })
-                .catch(err => this.setState({fberror: err}))
-                .then(() => this.setState({working: false}));
-        }
-    }
-
-    displayNameIsPresent() {
-        if (this.state.displayName === "") {
-            this.setState({displayNamePresent: false});
-            return false;
-        } else {
-            this.setState({displayNamePresent: true});
-            return true;
+                .catch(err => this.setState({fberror: err}));
         }
     }
 
