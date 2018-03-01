@@ -47,7 +47,7 @@ export default class SignUpView extends React.Component {
         if (evt) {
             evt.preventDefault();
         }
-        if (this.displayNameIsPresent() && this.passwordMatch()) {
+        if (this.state.displayName !== "" && this.passwordMatch()) {
             this.setState({working: true});
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(user => {
@@ -59,8 +59,6 @@ export default class SignUpView extends React.Component {
                 })
                 .catch(err => this.setState({fberror: err}))
                 .then(() => this.setState({working: false}));
-        } else {
-            this.setState({displayNamePresent: false});
         }
     }
 
@@ -106,14 +104,8 @@ export default class SignUpView extends React.Component {
                                    placeholder="Your Display Name"
                                    value={this.state.displayName}
                                    onChange={evt => this.setState({displayName: evt.target.value})}
+                                   required
                             />
-                            {
-                                !this.state.displayNamePresent ?
-                                    <p className="text-danger required-warning">
-                                        Please Choose A Display Name
-                                    </p> :
-                                    undefined
-                            }
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Email Address</label>
@@ -136,13 +128,6 @@ export default class SignUpView extends React.Component {
                                    onInput={evt => this.setState({password: evt.target.value})}
                                    required
                             />
-                            {
-                                this.state.passwordMatch === false ?
-                                    <div className="required-warning">
-                                        Passwords do not match
-                                    </div> :
-                                    undefined
-                            }
                         </div>
                         <div className="form-group">
                             <label htmlFor="confirmPassword">Confirm Password</label>
