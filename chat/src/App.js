@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import {HashRouter as Router, Switch, Redirect, Route} from "react-router-dom";
 import {ROUTES} from "./constants";
 import './App.css';
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
 
 // Import Views
 import SignInView from "./Views/SignIn";
