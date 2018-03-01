@@ -44,7 +44,6 @@ export default class mainView extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.state.channelMessageRef.off();
         this.setUpChannelRef(nextProps.match.params.channelName);
-        console.log("from: ", this.props.match.params.channelName, "to: ", nextProps.match.params.channelName);
     }
 
     componentWillUnmount() {
