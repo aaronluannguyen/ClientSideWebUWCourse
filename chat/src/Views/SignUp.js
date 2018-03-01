@@ -14,6 +14,7 @@ export default class SignUpView extends React.Component {
         this.state = {
             currentUser: undefined,
             displayName: "",
+            displayNamePresent: true,
             email: "",
             password: "",
             passwordConfirm: "",
@@ -42,8 +43,11 @@ export default class SignUpView extends React.Component {
             .then(ref.off("value", this.valueListener));
     }
 
-    handleSignUp() {
-        if (this.passwordMatch()) {
+    handleSignUp(evt) {
+        if (evt) {
+            evt.preventDefault();
+        }
+        if (this.displayNameIsPresent() && this.passwordMatch()) {
             this.setState({working: true});
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(user => {
@@ -55,11 +59,19 @@ export default class SignUpView extends React.Component {
                 })
                 .catch(err => this.setState({fberror: err}))
                 .then(() => this.setState({working: false}));
+        } else {
+            this.setState({displayNamePresent: false});
         }
     }
 
-    handleSubmit(evt) {
-        evt.preventDefault();
+    displayNameIsPresent() {
+        if (this.state.displayName === "") {
+            this.setState({displayNamePresent: false});
+            return false;
+        } else {
+            this.setState({displayNamePresent: true});
+            return true;
+        }
     }
 
     passwordMatch() {
@@ -85,7 +97,7 @@ export default class SignUpView extends React.Component {
                             </div> :
                             undefined
                     }
-                    <form onSubmit={evt => this.handleSubmit(evt)}>
+                    <form onSubmit={evt => this.handleSignUp(evt)}>
                         <div className="form-group">
                             <label htmlFor="displayName">Desired Display Name</label>
                             <input type="text"
@@ -93,12 +105,11 @@ export default class SignUpView extends React.Component {
                                    className="form-control"
                                    placeholder="Your Display Name"
                                    value={this.state.displayName}
-                                   onInput={evt => this.setState({displayName: evt.target.value})}
-                                   required
+                                   onChange={evt => this.setState({displayName: evt.target.value})}
                             />
                             {
-                                this.state.displayName === "" ?
-                                    <p className="text-danger">
+                                !this.state.displayNamePresent ?
+                                    <p className="text-danger required-warning">
                                         Please Choose A Display Name
                                     </p> :
                                     undefined
@@ -127,7 +138,7 @@ export default class SignUpView extends React.Component {
                             />
                             {
                                 this.state.passwordMatch === false ?
-                                    <div>
+                                    <div className="required-warning">
                                         Passwords do not match
                                     </div> :
                                     undefined
@@ -145,7 +156,7 @@ export default class SignUpView extends React.Component {
                             />
                             {
                                 this.state.passwordMatch === false ?
-                                    <div>
+                                    <div className="required-warning">
                                         Passwords do not match
                                     </div> :
                                     undefined
