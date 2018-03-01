@@ -30,10 +30,7 @@ export default class mainView extends React.Component {
                         }
                     });
                 });
-                let ref = firebase.database().ref(`messages/${this.state.currentChannel}`).limitToLast(500);
-                this.valueListener = ref.on("value", snapshot => this.setState({channelMessageSnap: snapshot}));
-                this.setState({channelMessageRef: ref});
-                this.scrollToBottom();
+                this.setUpChannelRef(this.props.match.params.channelName);
             } else {
                 this.props.history.push(ROUTES.signIn);
             }
@@ -45,7 +42,9 @@ export default class mainView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
+        this.state.channelMessageRef.off();
+        this.setUpChannelRef(nextProps.match.params.channelName);
+        console.log("from: ", this.props.match.params.channelName, "to: ", nextProps.match.params.channelName);
     }
 
     componentWillUnmount() {
@@ -53,6 +52,13 @@ export default class mainView extends React.Component {
         if (this.state.channelMessageRef) {
             this.state.channelMessageRef.off("value", this.valueListener);
         }
+    }
+
+    setUpChannelRef(channel) {
+        let ref = firebase.database().ref(`messages/${channel}`).limitToLast(500);
+        this.valueListener = ref.on("value", snapshot => this.setState({channelMessageSnap: snapshot}));
+        this.setState({channelMessageRef: ref});
+        this.scrollToBottom();
     }
 
     handleSignOut() {
