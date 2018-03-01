@@ -34,21 +34,21 @@ export default class Message extends React.Component {
                     <img src={this.state.message.author.photoURL} alt="profile picture"/>
                 </div>
                 <div className="wordContent">
-                    <p>{this.state.message.author.displayName} ------ <span id="timestamp">Posted at: {Date(this.state.message.createdAt)} ------
+                    <p><span id="username">{this.state.message.author.displayName}</span> <span id="timestamp">Posted at: {Date(this.state.message.createdAt)}</span>
                         {
                             this.props.userInfo.userID === this.state.message.author.uid ?
                                 !this.state.edit ?
                                     <span>
-                                        <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-warning">Edit</button>
-                                        <button type="button" onClick={() => this.handleDelete()} className="btn btn-danger">Delete</button>
+                                        <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-warning btn-sm">Edit</button>
+                                        <button type="button" onClick={() => this.handleDelete()} className="btn btn-danger btn-sm">Delete</button>
                                     </span> :
                                     <span>
-                                        <button type="button" onClick={() => this.handleEdit()} className="btn btn-success">Update</button>
-                                        <button type="button" onClick={() => this.setState({edit: false})} className="btn btn-danger">Cancel</button>
+                                        <button type="button" onClick={() => this.handleEdit()} className="btn btn-success btn-sm">Update</button>
+                                        <button type="button" onClick={() => this.setState({edit: false})} className="btn btn-danger btn-sm">Cancel</button>
                                     </span>
                                 : undefined
                         }
-                    </span></p>
+                    </p>
                     {
                         this.state.edit === true ?
                             <form onSubmit={evt => this.handleEdit(evt)}>

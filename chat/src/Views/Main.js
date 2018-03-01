@@ -44,6 +44,10 @@ export default class mainView extends React.Component {
         this.scrollToBottom();
     }
 
+    componentWillReceiveProps(nextProps) {
+
+    }
+
     componentWillUnmount() {
         this.unListenAuth();
         if (this.state.channelMessageRef) {
