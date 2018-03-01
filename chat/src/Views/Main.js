@@ -30,7 +30,7 @@ export default class mainView extends React.Component {
                         }
                     });
                 });
-                let ref = firebase.database().ref(`messages/${this.state.currentChannel}`);
+                let ref = firebase.database().ref(`messages/${this.state.currentChannel}`).limitToLast(500);
                 this.valueListener = ref.on("value", snapshot => this.setState({channelMessageSnap: snapshot}));
                 this.setState({channelMessageRef: ref});
                 this.scrollToBottom();

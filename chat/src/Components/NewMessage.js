@@ -23,7 +23,7 @@ export default class NewMessage extends React.Component {
                 body: this.state.body,
                 createdAt: firebase.database.ServerValue.TIMESTAMP
             };
-            this.props.channelMessageRef.push(messageObj)
+            this.props.channelMessageRef.ref.push(messageObj)
                 .then(() => this.setState({body: "", fbError: undefined}))
                 .catch(err => this.setState({fbError: err}));
         }
