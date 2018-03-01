@@ -1,7 +1,4 @@
 import React from "react";
-import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/database";
 import "./Message.css";
 
 export default class Message extends React.Component {
