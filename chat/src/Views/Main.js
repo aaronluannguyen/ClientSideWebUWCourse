@@ -33,10 +33,15 @@ export default class mainView extends React.Component {
                 let ref = firebase.database().ref(`messages/${this.state.currentChannel}`);
                 this.valueListener = ref.on("value", snapshot => this.setState({channelMessageSnap: snapshot}));
                 this.setState({channelMessageRef: ref});
+                this.scrollToBottom();
             } else {
                 this.props.history.push(ROUTES.signIn);
             }
         });
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
     }
 
     componentWillUnmount() {
@@ -49,6 +54,10 @@ export default class mainView extends React.Component {
     handleSignOut() {
         firebase.auth().signOut();
         this.props.history.push(ROUTES.signIn);
+    }
+
+    scrollToBottom() {
+        this.bottom.scrollIntoView({behavior: "smooth"});
     }
 
     render() {
@@ -88,8 +97,9 @@ export default class mainView extends React.Component {
                                         </div>
                                     </div>
                                 </header>
-                                <div>
+                                <div id="channel-messages">
                                     <ChannelMessages userInfo={this.state.userInfo} channelMessageSnap={this.state.channelMessageSnap}/>
+                                    <div ref={bottomPlace => {this.bottom = bottomPlace;}}/>
                                 </div>
                                 <div>
                                     <NewMessage id="text-input" channelMessageRef={this.state.channelMessageRef} userInfo={this.state.userInfo}/>

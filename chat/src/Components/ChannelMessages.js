@@ -13,8 +13,10 @@ export default class ChannelMessages extends React.Component {
         });
 
         return (
-            <div id="channel-messages">
-                {messages}
+            <div>
+                <div>
+                    {messages}
+                </div>
             </div>
         )
     }

@@ -18,6 +18,6 @@
 
 #channel-messages {
     height: 90vh;
-    overflow: auto;
+    overflow-y: auto;
     min-width: 100%;
 }
