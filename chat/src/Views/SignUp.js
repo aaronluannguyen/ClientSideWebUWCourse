@@ -30,23 +30,28 @@ export default class SignUpView extends React.Component {
         this.authUnlisten();
     }
 
-    handleSignUp(evt) {
-        if (evt) {
-            evt.preventDefault();
-        }
-        if (this.state.displayName !== "" && this.passwordMatch()) {
+    handleSignUp() {
+        if (this.passwordMatch()) {
             this.setState({working: true});
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(user => {
-                    user.updateProfile({
-                        displayName: this.state.displayName,
-                        photoURL: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
-                    });
                     this.setState({working: false});
-                    this.props.history.push(ROUTES.generalChannel);
+                    this.updateProfile(user);
+                    this.props.history.push(ROUTES.generalChannel)
                 })
-                .catch(err => this.setState({fberror: err}));
+                .catch(err => this.setState({fberror: err}))
         }
+    }
+
+    updateProfile(user) {
+        user.updateProfile({
+            displayName: this.state.displayName,
+            photoURL: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
+        });
+    }
+
+    handleSubmit(evt) {
+        evt.preventDefault();
     }
 
     passwordMatch() {
@@ -72,7 +77,7 @@ export default class SignUpView extends React.Component {
                             </div> :
                             undefined
                     }
-                    <form onSubmit={evt => this.handleSignUp(evt)}>
+                    <form onSubmit={evt => this.handleSubmit(evt)}>
                         <div className="form-group">
                             <label htmlFor="displayName">Desired Display Name</label>
                             <input type="text"
