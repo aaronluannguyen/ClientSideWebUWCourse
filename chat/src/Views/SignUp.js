@@ -32,22 +32,16 @@ export default class SignUpView extends React.Component {
 
     handleSignUp() {
         if (this.passwordMatch()) {
-            this.setState({working: true});
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
                 .then(user => {
-                    this.setState({working: false});
-                    this.updateProfile(user);
-                    this.props.history.push(ROUTES.generalChannel)
+                    return user.updateProfile({
+                        displayName: this.state.displayName,
+                        photoURL: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
+                    });
                 })
+                .then(() => this.props.history.push(ROUTES.generalChannel))
                 .catch(err => this.setState({fberror: err}))
         }
-    }
-
-    updateProfile(user) {
-        user.updateProfile({
-            displayName: this.state.displayName,
-            photoURL: `https://www.gravatar.com/avatar/${md5(this.state.email.toLowerCase().trim())}`
-        });
     }
 
     handleSubmit(evt) {
