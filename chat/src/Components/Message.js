@@ -25,26 +25,17 @@ export default class Message extends React.Component {
 
     render() {
         return (
-            <div className="container" id="messageBox">
-                <div className="imgContainer">
-                    <img src={this.state.message.author.photoURL} alt="gravatar"/>
-                </div>
-                <div className="wordContent">
-                    <p><span id="username">{this.state.message.author.displayName}</span> <span id="timestamp">Posted at: {Date(this.state.message.createdAt)}</span>
-                        {
-                            this.props.userInfo.userID === this.state.message.author.uid ?
-                                !this.state.edit ?
-                                    <span>
-                                        <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-warning btn-sm">Edit</button>
-                                        <button type="button" onClick={() => this.handleDelete()} className="btn btn-danger btn-sm">Delete</button>
-                                    </span> :
-                                    <span>
-                                        <button type="button" onClick={() => this.handleEdit()} className="btn btn-success btn-sm">Update</button>
-                                        <button type="button" onClick={() => this.setState({edit: false})} className="btn btn-danger btn-sm">Cancel</button>
-                                    </span>
-                                : undefined
-                        }
-                    </p>
+            <div className="card message-contents">
+                <div className="card-body">
+                    <div id="message-header">
+                        <div id="user-img">
+                            <img src={`${this.state.message.author.photoURL}?s=50`} alt="gravatar"/>
+                        </div>
+                        <div id="name-post-time">
+                            {this.state.message.author.displayName}
+                            <p id="timestamp">Posted at: {Date(this.state.message.createdAt)}</p>
+                        </div>
+                    </div>
                     {
                         this.state.edit === true ?
                             <form onSubmit={evt => this.handleEdit(evt)}>
@@ -62,7 +53,22 @@ export default class Message extends React.Component {
                                        placeholder={this.state.content}
                                 />
                             </form> :
-                            <p>{this.state.content}</p>
+                            <div>
+                                <p>{this.state.content}</p>
+                            </div>
+                    }
+                    {
+                        this.props.userInfo.userID === this.state.message.author.uid ?
+                            !this.state.edit ?
+                                <div id="edit-buttons">
+                                    <button type="button" onClick={() => this.setState({edit: true})} className="btn btn-warning btn-sm">Edit</button>
+                                    <button type="button" onClick={() => this.handleDelete()} className="btn btn-danger btn-sm">Delete</button>
+                                </div> :
+                                <div id="edit-buttons">
+                                    <button type="button" onClick={() => this.handleEdit()} className="btn btn-success btn-sm">Update</button>
+                                    <button type="button" onClick={() => this.setState({edit: false})} className="btn btn-danger btn-sm">Cancel</button>
+                                </div>
+                            : undefined
                     }
                 </div>
             </div>

@@ -2,25 +2,25 @@
     box-sizing: border-box;
 }
 
-#messageBox {
-    display: flex;
-    flex-direction: row;
-    padding: 10px 10px;
-    margin: 0;
+.message-contents {
+
 }
 
-.imgContainer {
-    flex: 0 0 5%;
+#message-header {
+    display: flex;
+}
+
+#message-header img {
     padding-right: 10px;
 }
 
-.wordContent {
-    flex: 10 0 auto;
+#edit-buttons {
+    padding: 0px;
 }
 
 .btn-danger,
 .btn-warning {
-    margin: 0px 5px;
+    margin-right: 10px;
 }
 
 #timestamp {
