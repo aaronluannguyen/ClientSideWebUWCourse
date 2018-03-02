@@ -88,7 +88,7 @@ export default class mainView extends React.Component {
                         </div>
                     </header>
                     <div>
-                        <div class="btn btn-default active btn-outline-success">Channels: </div>
+                        <div className="btn btn-default active btn-outline-success">Channels: </div>
                         <Link to={ROUTES.generalChannel}>
                             <button id="channel-button" type="button" className="btn btn-outline-success">General</button>
                         </Link>
@@ -98,7 +98,7 @@ export default class mainView extends React.Component {
                     </div>
                     <div id="channel-messages">
                         <ChannelMessages userInfo={this.state.userInfo} channelMessageSnap={this.state.channelMessageSnap}/>
-                        <div ref={bottomPlace => {this.bottom = bottomPlace;}}/>
+                        <div id="bottom-channel-messages" ref={bottomPlace => {this.bottom = bottomPlace;}}/>
                     </div>
                     <div>
                         <NewMessage id="text-input" channelMessageRef={this.state.channelMessageRef} userInfo={this.state.userInfo}/>
