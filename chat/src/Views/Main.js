@@ -71,53 +71,40 @@ export default class mainView extends React.Component {
 
     render() {
         return (
-            <div id="page">
-                <main>
-                    <div className="container" id="main-view">
-                        <div className="row">
-                            <div className="col-1">
-                                <ul>
-                                    <li>
-                                        {
-                                            this.props.match.params.channelName !== "general" ?
-                                                <Link to={ROUTES.generalChannel}>General</Link> : "General"
-                                        }
-                                    </li>
-                                    <li>
-                                        {
-                                            this.props.match.params.channelName !== "random" ?
-                                                <Link to={ROUTES.randomChannel}>Random</Link> : "Random"
-                                        }
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="col-11">
-                                <header className="bg-secondary text-white" id="main-header">
-                                    <div className="container-fluid">
-                                        <div className="row align-items-center">
-                                            <div className="col">
-                                                <h1 className="col">#{this.props.match.params.channelName}</h1>
-                                            </div>
-                                            <div className="col-auto">
-                                                <div id="sign-out" onClick={() => this.handleSignOut()}>
-                                                    <button type="button" onClick={() => this.handleSignOut()} className="btn btn-danger">Sign Out</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </header>
-                                <div id="channel-messages">
-                                    <ChannelMessages userInfo={this.state.userInfo} channelMessageSnap={this.state.channelMessageSnap}/>
-                                    <div ref={bottomPlace => {this.bottom = bottomPlace;}}/>
+            <main>
+                <div className="container" id="main-view">
+                    <header className="bg-secondary text-white" id="main-header">
+                        <div className="container-fluid">
+                            <div className="row align-items-center">
+                                <div className="col">
+                                    <h1 className="col">#{this.props.match.params.channelName}</h1>
                                 </div>
-                                <div>
-                                    <NewMessage id="text-input" channelMessageRef={this.state.channelMessageRef} userInfo={this.state.userInfo}/>
+                                <div className="col-auto">
+                                    <div id="sign-out" onClick={() => this.handleSignOut()}>
+                                        <button type="button" onClick={() => this.handleSignOut()} className="btn btn-danger">Sign Out</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </header>
+                    <div>
+                        <div class="btn btn-default active btn-outline-success">Channels: </div>
+                        <Link to={ROUTES.generalChannel}>
+                            <button id="channel-button" type="button" className="btn btn-outline-success">General</button>
+                        </Link>
+                        <Link to={ROUTES.randomChannel}>
+                            <button id="channel-button" type="button" className="btn btn-outline-success">Random</button>
+                        </Link>
                     </div>
-                </main>
-            </div>
+                    <div id="channel-messages">
+                        <ChannelMessages userInfo={this.state.userInfo} channelMessageSnap={this.state.channelMessageSnap}/>
+                        <div ref={bottomPlace => {this.bottom = bottomPlace;}}/>
+                    </div>
+                    <div>
+                        <NewMessage id="text-input" channelMessageRef={this.state.channelMessageRef} userInfo={this.state.userInfo}/>
+                    </div>
+                </div>
+            </main>
         );
     }
 }
