@@ -54,7 +54,7 @@ export default class Message extends React.Component {
                                 />
                             </form> :
                             <div>
-                                <p>{this.state.content}</p>
+                                <p id="actual-message">{this.state.content}</p>
                             </div>
                     }
                     {

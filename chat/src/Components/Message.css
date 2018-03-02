@@ -14,6 +14,10 @@
     padding-right: 10px;
 }
 
+#actual-message {
+    margin-bottom: 0px;
+}
+
 #edit-buttons {
     padding: 0px;
 }
@@ -21,6 +25,7 @@
 .btn-danger,
 .btn-warning,
 .btn-success {
+    margin-top: 10px;
     margin-right: 10px;
 }
 
