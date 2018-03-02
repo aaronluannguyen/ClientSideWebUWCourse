@@ -2,8 +2,8 @@
     box-sizing: border-box;
 }
 
-.message-contents {
-
+.card-body {
+    padding: 20px 15px;
 }
 
 #message-header {
@@ -19,8 +19,13 @@
 }
 
 .btn-danger,
-.btn-warning {
+.btn-warning,
+.btn-success {
     margin-right: 10px;
+}
+
+#text-input-bar {
+    margin-bottom: 10px;
 }
 
 #timestamp {
