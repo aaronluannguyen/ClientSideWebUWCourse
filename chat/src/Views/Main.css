@@ -12,8 +12,9 @@
 }
 
 #channel-messages {
-    height: 90vh;
+    height: 75vh;
     overflow-y: auto;
+    margin: 10px 0px;
 }
 
 #channel-button {
@@ -22,4 +23,8 @@
 
 #bottom-channel-messages {
     margin-bottom: 10px;
+}
+
+#channel-section {
+    margin: 10px 0px;
 }

@@ -87,7 +87,7 @@ export default class mainView extends React.Component {
                             </div>
                         </div>
                     </header>
-                    <div>
+                    <div id="channels-section">
                         <div className="btn btn-default active btn-outline-success">Channels: </div>
                         <Link to={ROUTES.generalChannel}>
                             <button id="channel-button" type="button" className="btn btn-outline-success">General</button>
