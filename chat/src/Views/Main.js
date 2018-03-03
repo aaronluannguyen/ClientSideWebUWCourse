@@ -87,15 +87,27 @@ export default class mainView extends React.Component {
                             </div>
                         </div>
                     </header>
-                    <div id="channels-section">
+                    {
+                        this.props.match.params.channelName === "general" ?
+                        <div id="channels-section">
                         <div className="btn btn-default active btn-outline-success">Channels: </div>
                         <Link to={ROUTES.generalChannel}>
-                            <button id="channel-button" type="button" className="btn btn-outline-success">General</button>
+                        <button id="channel-button" type="button" className="btn active btn-outline-success">General</button>
                         </Link>
                         <Link to={ROUTES.randomChannel}>
-                            <button id="channel-button" type="button" className="btn btn-outline-success">Random</button>
+                        <button id="channel-button" type="button" className="btn btn-outline-success">Random</button>
                         </Link>
-                    </div>
+                        </div> :
+                        <div id="channels-section">
+                        <div className="btn btn-default active btn-outline-success">Channels: </div>
+                        <Link to={ROUTES.generalChannel}>
+                        <button id="channel-button" type="button" className="btn btn-outline-success">General</button>
+                        </Link>
+                        <Link to={ROUTES.randomChannel}>
+                        <button id="channel-button" type="button" className="btn active btn-outline-success">Random</button>
+                        </Link>
+                        </div>
+                    }
                     <div id="channel-messages">
                         <ChannelMessages userInfo={this.state.userInfo} channelMessageSnap={this.state.channelMessageSnap}/>
                         <div id="bottom-channel-messages" ref={bottomPlace => {this.bottom = bottomPlace;}}/>
