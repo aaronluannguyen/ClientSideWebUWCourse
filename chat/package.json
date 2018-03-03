@@ -1,5 +1,6 @@
 {
   "name": "chat",
+  "homepage": "https://info343b-w18.github.io/challenges-aaronluannguyen/chat",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +13,8 @@
     "react-scripts": "1.1.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build -a -e chat",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
