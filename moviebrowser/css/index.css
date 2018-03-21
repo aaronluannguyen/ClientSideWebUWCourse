@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+.jumbotron {
+    background-image: url("../img/header1.jpg");
+    background-position: center;
+    background-size: cover;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+.list-group {
+    max-width: 15vw;
+}
+
+.container {
+    justify-content: center;
+    width: 98vw;
+    max-width: 2000px;
+    margin: 0 auto;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+#currentPage {
+    color: black;
+}
+
+.card {
+    min-width: 300px;
+}
+
+#singleMovieImg {
+    padding-bottom: 10px;
+}
+
+#singleMovieImgLocation {
+    overflow: auto;
+}
+
+#singleMovieContent {
+    padding-left: 0px;
+}
+
+.navbar {
+    padding-top: 0px;
+    padding-left: 0px;
+}
