@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
+.sign-in-page {
+    min-height: 100vh;
+    background-color: #263238;
+    display: flex;
+    align-items: center;
+}
+
+#sign-in-container {
+    max-width: 40vw;
+    background-color: #ECEFF1;
+}
