@@ -2,6 +2,7 @@
 
 //TODO: set the JavaScript interpreter into script mode
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+"use strict";
 
 //The following is only used by Visual Studio Code and other JSDoc-aware
 //editors. It doesn't affect the way your code is executed at runtime,
@@ -34,7 +35,10 @@ function getTitle(movie) {
     //(which is an object), or the literal string "(no title)" 
     //if the `movie` parameter is null/undefined or has no `title`
     //property
-    
+    if (movie && movie.title) {
+        return movie.title;
+    }
+    return '(no title)';
 }
 
 /**
@@ -49,6 +53,9 @@ function getYearReleased(movie) {
     //TODO: implement this according to the comments above
     //note that the `released` property is a string in the
     //format YYYY-MM-DD (e.g., 2017-12-31)
+    if (movie && movie.released) {
+        return Number(movie.released.substring(0,4));
+    }
 }
 
 /**
@@ -67,7 +74,11 @@ function getYearReleased(movie) {
  */
 function getCitation(movie) {
     //TODO: implement this according to the comments above
-
+    let result = getTitle(movie);
+    if (getYearReleased(movie) === undefined) {
+        return result;
+    }
+    return result + " (" + getYearReleased(movie) + ")";
 }
 
 /**
@@ -82,7 +93,20 @@ function getCitation(movie) {
  */
 function getAvgTicketPrice(movie) {
     //TODO: implement this according to the comments above
+    if (movie) {
+        if (movie.gross && movie.tickets) {
+            return movie.gross / movie.tickets;
+        }
+        return NaN;
+    }
+}
 
+
+function reduceTicketsSold(acc, movie) {
+    if (!movie.gross) {
+        return 0;
+    }
+    return acc + movie.tickets;
 }
 
 /**
@@ -103,7 +127,7 @@ function totalTicketsSold(moviesArray) {
     //try using the .reduce() methods on the moviesArray
     //to calculate this value using functional programming techniques
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-
+    return moviesArray.reduce(reduceTicketsSold, 0);
 }
 
 /**
@@ -120,6 +144,7 @@ function allCitations(moviesArray) {
     //try using the .map() method on the moviesArray
     //to accomplish this in one short line of code!
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+    return moviesArray.map(getCitation);
 }
 
 /**
@@ -135,7 +160,19 @@ function topGrossingMovie(moviesArray) {
     //you can use a standard for loop to accomplish this, but
     //try using .reduce() instead for a more elegant solution
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+    let topMovie = moviesArray[0];
+    let topGross = 0;
+    for (let i = 0; i < moviesArray.length; i++) {
+        if (moviesArray[i].gross > topGross) {
+            topMovie = moviesArray[i];
+            topGross = moviesArray[i].gross;
+        }
+    }
+    return topMovie;
+}
 
+function isDisney(movie) {
+    return movie.distributor.toLowerCase() === "walt disney";
 }
 
 /**
@@ -153,7 +190,12 @@ function onlyDisneyMovies(moviesArray) {
     //"Walt Disney" or "walt disney" or "WALT DISNEY", etc.
     //try using .filter() to accomplish this
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+    return moviesArray.filter(isDisney);
+}
 
+
+function byGross(movie1, movie2) {
+    return movie2.gross - movie1.gross;
 }
 
 /**
@@ -167,7 +209,11 @@ function top10DisneyMovies(moviesArray) {
     //TODO: implement this according to the comments above
     //HINT: you can use the .sort() method to sort an array
     //and the .slice() method to slice off the first 10 elements
-    
+    return onlyDisneyMovies(moviesArray).sort(byGross).slice(0,10);
+}
+
+function onlyComedy(movie) {
+    return movie.genre.toLowerCase() === "comedy";
 }
 
 /**
@@ -182,7 +228,7 @@ function top10Comedies(moviesArray) {
     //your code should do a case-insensitive comparison 
     //of the `genre` property so that you include
     //"Comedy", "comedy", "COMEDY", etc.
-
+    return moviesArray.filter(onlyComedy).sort(byGross).splice(0,10);
 }
 
 /**
@@ -204,7 +250,16 @@ function distinctDistributors(moviesArray) {
     // so you need to select only the distinct distributor
     // values and return those as an array. Remember that the
     // properties of a JavaScript object are a unique set.
-
+    let resultArray = [];
+    for (let i = 0; i < moviesArray.length; i++) {
+        if (moviesArray[i].distributor == undefined) {
+            moviesArray[i].distributor = '(none)';
+        }
+        if (!resultArray.includes(moviesArray[i].distributor)) {
+            resultArray.push(moviesArray[i].distributor);
+        }
+    }
+    return resultArray;
 }
 
 /**
@@ -224,7 +279,20 @@ function distinctDistributors(moviesArray) {
  */
 function countByRating(moviesArray) {
     //TODO: implement this according to the comments above
+    let ratingCount = {};
+    for (let i = 0; i < moviesArray.length; i++) {
+        let ratingName = String(moviesArray[i].rating);
+        if (!ratingCount.hasOwnProperty(ratingName)) {
+            ratingCount[ratingName] = 1;
+        } else {
+            ratingCount[ratingName]++;
+        }
+    }
+    return ratingCount;
+}
 
+function genreDesc(genre1, genre2) {
+    return genre2.gross - genre1.gross;
 }
 
 /**
@@ -262,7 +330,19 @@ function countByRating(moviesArray) {
  */
 function grossByGenre(moviesArray) {
     //TODO: implement this according to the comments above
-
+    let genreGrossing = [];
+    for (let i = 0; i < moviesArray.length; i++) {
+        if (!moviesArray[i].genre) {
+            moviesArray[i].genre = "(none)";
+        }
+        if (genreGrossing.findIndex(genreObj => genreObj.genre === moviesArray[i].genre) === -1) {
+            genreGrossing.push({genre: moviesArray[i].genre, gross: moviesArray[i].gross});
+        } else {
+            let genreIndex = genreGrossing.findIndex(genreObj => genreObj.genre === moviesArray[i].genre);
+            genreGrossing[genreIndex].gross += moviesArray[i].gross;
+        }
+    }
+    return genreGrossing.sort(genreDesc);
 }
 
 
@@ -271,6 +351,13 @@ function grossByGenre(moviesArray) {
 // The following reports are not required, but you can implement for extra credit.
 // See the Opportunities for Extra Credit section of the challenge description
 // for more details.
+
+function ratingLogicSort(rating1, rating2) {
+    let sortGoal = ["G", "PG", "PG-13", "R", "NC-17", "Not Rated"];
+    let rating1Index = sortGoal.findIndex(rating => rating === rating1.rating);
+    let rating2Index = sortGoal.findIndex(rating => rating === rating2.rating);
+    return rating1Index - rating2Index;
+}
 
 /**
  * Returns the sum of all tickets sold for each distinct rating.
@@ -286,6 +373,18 @@ function grossByGenre(moviesArray) {
  */
 function ticketsByRating(moviesArray) {
     //TODO: implement according to the comments
+    let ratingResult = [];
+    for (let i = 0; i < moviesArray.length; i++) {
+        if (ratingResult.findIndex(movie => movie.rating === moviesArray[i].rating) === -1) {
+            ratingResult.push({rating: moviesArray[i].rating, tickets: moviesArray[i].tickets});
+        } else {
+            let ratingIndex = ratingResult.findIndex(movie => movie.rating === moviesArray[i].rating);
+            ratingResult[ratingIndex].tickets += moviesArray[i].tickets;
+        }
+    }
+    console.log(ratingResult);
+    console.log(ratingResult.sort(ratingLogicSort));
+    return ratingResult.sort(ratingLogicSort);
 }
 
 /**
